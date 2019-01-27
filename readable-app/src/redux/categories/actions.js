@@ -12,8 +12,9 @@ export const fetchCategories = () => {
 
 
 
-export default [
+export default {
     FETCH_CATEGORIES,
     FETCH_CATEGORIES_SUCCESS,
-    FETCH_CATEGORIES_FAILURE
-];
+    FETCH_CATEGORIES_FAILURE,
+    fetchCategories
+};

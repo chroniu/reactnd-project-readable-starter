@@ -1,13 +1,13 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import {createLogicMiddleware} from 'redux-logic';
 import {rootReducer} from './rootReducer';
-
+import * as API from '../../utils/API';
 import categoriesLogic from '../categories/logic';
 
 
 const deps = {
-    //TODO remove if not used
-};
+    API,
+}; 
 
 export const configureStore = () => {
     const arrLogic = [categoriesLogic];
