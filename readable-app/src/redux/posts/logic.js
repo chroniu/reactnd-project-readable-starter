@@ -33,6 +33,58 @@ const fetchPostLogic = createLogic({
     }
 });
 
+const updatePostLogic = createLogic({
+    type: Actions.UPDATE_POST,
+    latest: true,
+    processOptions:{
+        dispatchReturn: true,
+        successType: Actions.UPDATE_POST_SUCCESS,
+        failType: Actions.UPDATE_POST_FAILURE
+    },
+    process({API, getState, action}){
+      
+    }
+});
 
-                                    
-export default [fetchPostsLogic, fetchPostLogic];
+const deletePostLogic = createLogic({
+    type: Actions.DELETE_POST,
+    latest: true,
+    processOptions:{
+        dispatchReturn: true,
+        successType: Actions.DELETE_POST_SUCCESS,
+        failType: Actions.DELETE_POST_FAILURE
+    },
+    process({API, getState, action}){
+
+    }
+});
+
+const votePostLogic = createLogic({
+    type: Actions.VOTE_POST,
+    latest: true,
+    processOptions:{
+        dispatchReturn: true,
+        successType: Actions.VOTE_POST_SUCCESS,
+        failType: Actions.VOTE_POST_FAILURE
+    },
+    process({API, getState, action}){
+        return API.votePost(action.postID, action.option);
+    }
+});
+
+
+const postPostLogic = createLogic({
+    type: Actions.POST_POST,
+    latest: true,
+    processOptions:{
+        dispatchReturn: true,
+        successType: Actions.POST_POST_SUCCESS,
+        failType: Actions.POST_POST_FAILURE
+    },
+    process({API, getState, action}){
+
+    }
+});
+
+
+export default [fetchPostsLogic, fetchPostLogic, updatePostLogic, deletePostLogic, votePostLogic, postPostLogic];

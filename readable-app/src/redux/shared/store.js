@@ -3,17 +3,22 @@ import {createLogicMiddleware} from 'redux-logic';
 import {rootReducer} from './rootReducer';
 import * as API from '../../utils/API';
 import categoriesLogic from '../categories/logic';
+import postsLogic from '../posts/logic';
+import logger from 'redux-logger';
 
 
 const deps = {
     API,
-}; 
+};  
 
 export const configureStore = () => {
-    const arrLogic = [categoriesLogic];
+    const arrLogic = [categoriesLogic, ...postsLogic];
     const logicMiddleware = createLogicMiddleware(arrLogic, deps);
     const middlewares = [
         logicMiddleware,
+        logger,
+        
+
     ];
         
     return createStore(rootReducer, compose(applyMiddleware(...middlewares)));
