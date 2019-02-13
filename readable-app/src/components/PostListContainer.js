@@ -40,7 +40,6 @@ class PostListContainer extends React.Component{
     }
     
     render(){
-        console.log("postList state", this.state);
         
         if (this.props.loading){
             return(<Spin />);

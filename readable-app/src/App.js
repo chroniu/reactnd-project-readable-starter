@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import {Layout,  Breadcrumb} from 'antd';
+import {Layout} from 'antd';
 import MenuContainer from './components/MenuContainer';
 import PostListContainer from './components/PostListContainer';
 import PostContainer from './components/PostContainer';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import {connect} from 'react-redux';
-const {Header, Content, Footer} = Layout;
+const {Content} = Layout;
 
 
 class App extends Component {

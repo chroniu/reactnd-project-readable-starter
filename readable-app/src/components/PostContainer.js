@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PostActions from '../redux/posts/actions';
-import {Spin} from 'antd';
 import Post from './Post';
 
 

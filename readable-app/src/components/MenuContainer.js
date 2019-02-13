@@ -10,9 +10,10 @@ const mapStateToProps = (state, props) =>{
         return {categories:Object.values(state.categories)};
 };
 
-const mapDispatchToProps = (dispatch, props) =>{
+/*const mapDispatchToProps = (dispatch, props) =>{
     
 };
+*/
 
 class MenuContainer extends React.Component{
     componentDidMount(){
@@ -20,8 +21,6 @@ class MenuContainer extends React.Component{
     }
 
     render(){
-        console.log("categories", this.props);
-
         return(
             <Menu categories={this.props.categories}/>
         );

@@ -3,7 +3,6 @@ import React from 'react';
 import {Menu, Icon}   from 'antd';
 import {Link} from "react-router-dom";
 import {Layout} from 'antd';
-import { Spin } from 'antd';
 
 
 const styles = {
