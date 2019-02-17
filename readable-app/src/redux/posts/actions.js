@@ -38,10 +38,10 @@ export const fetchPost = (postID) => {
     };
 };
 
-export const deletePost = (post) =>{
+export const deletePost = (postID) =>{
     return{
         type: DELETE_POST,
-        post
+        postID
     };
 };
 
@@ -55,7 +55,7 @@ export const votePost = (postID, option) => {
 
 export const updatePost = (post) => {
     return{
-        type: post,
+        type: UPDATE_POST,
         post
     };
 };

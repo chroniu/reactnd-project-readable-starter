@@ -3,7 +3,7 @@
 */
 
 import React from 'react';
-import {Form, Input, Button, Select, TextArea} from 'antd';
+import {Form, Input, Button, Select, Modal, TextArea} from 'antd';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // ES6
 
@@ -14,35 +14,65 @@ function hasErrors(fieldsError) {
 
 
 class PostEdit extends React.Component{
+    state = {
+        submiting: false
+    }
     
     componentDidMount(){
-        //disable submit button at start
+        console.log("postEdit props", this.props);
+        const postID = this.props.postID;
+
+        if(postID !== 'new'){
+            const {title, body, author, category} =  this.props.post;
+            this.props.form.setFieldsValue({
+                title: title,
+                userName: author,
+                content: body,
+                category: category
+            });
+        }
+         //disable submit button at start
         this.props.form.validateFields();
     }
 
     changeCategory = (value) => {
-        
+
     }
     
     handleSubmit = (e) => {
         e.preventDefault();
+        this.setState({submiting: true});
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                console.log("values", values);
+                const newPost = Object.assign({}, {...this.props.post,
+                                                   title: values.title,
+                                                   author: values.userName,
+                                                   body: values.content,
+                                                   category: values.category});
+
+                if(this.props.postID !== 'new'){
+                    this.props.updatePost(newPost);
+                    this.props.history.push(`/${newPost.category}/${newPost.id}`);
+                }else{
+                    this.props.submitNewPost(newPost);
+                    this.props.history.push('/');
+                }
+
+                this.setState({submiting: false});
+
             }
         });
     }
 
 
     render(){
-        //const {id, timestamp, title, body, author, category, voteScore} =  post;
-        const {
-            getFieldDecorator, getFieldsError, getFieldError, isFieldTouched,
-        } = this.props.form;
+        
+        const {getFieldDecorator, getFieldsError,
+               getFieldError, isFieldTouched,} = this.props.form;
 
-        const {userNameError, titleError, contentError} =
+        const {userNameError, titleError, contentError, categoryError} =
               ['userName', 'title', 'content'].map(field => isFieldTouched(field) && getFieldError(field));
-
 
         return(
             <Form onSubmit={this.handleSubmit}>
@@ -51,8 +81,8 @@ class PostEdit extends React.Component{
                 validateStatus={titleError ? 'error' : ''}
                 help={titleError || ''}>
                 {getFieldDecorator('title', {
-                    rules: [{ required: true, message: 'Please input a Title!' }], })(
-                    <Input addonBefore="Title" placeholder="title" />
+                    rules: [{ required: true, message: 'Please input a Title!'}], })(
+                    <Input addonBefore="Title" placeholder="title"/>
                 )}
               </Form.Item>
               
@@ -61,7 +91,22 @@ class PostEdit extends React.Component{
                 help={userNameError || ''}>
                 {getFieldDecorator('userName', {
                     rules: [{ required: true, message: 'Please input your username!' }], })(
-                    <Input addonBefore="Author" placeholder="userName" />
+                    <Input addonBefore="Author" placeholder="userName"/>
+                )}
+              </Form.Item>
+
+              <Form.Item
+                validateStatus={categoryError ? 'error' : ''}
+                help={categoryError || ''}>
+            
+                {getFieldDecorator('category', {
+                    rules: [{ required: true, message: 'You must select a category for the post!' }], })(
+                    <Select addonBefore="Category" placeholder="category">
+                      {this.props.categories.map((category) =>
+                                                 <Select.Option value={category.path} key={category.path}>
+                                                   {category.name}
+                                                 </Select.Option>)}
+                    </Select>
                 )}
               </Form.Item>
         
@@ -70,14 +115,18 @@ class PostEdit extends React.Component{
                 help={contentError || ''}>
                 {getFieldDecorator('content', {
                     rules: [{ required: true, message: 'The post must not be empty !' }], })(
-                    <Input.TextArea autosize={{ minRows: 10, maxRows: 40 }} placeholder="content" />
+                    <Input.TextArea autosize={{ minRows: 10, maxRows: 40 }}
+                                    placeholder="content"/>
                 )}
               </Form.Item>
+              
               <Form.Item>
                 <Button
                   type="primary"
                   htmlType="submit"
-                  disabled={hasErrors(getFieldsError())}>
+                  disabled={hasErrors(getFieldsError())}
+                  loading={this.state.submiting}
+                >
                   Submit
                 </Button>
               </Form.Item>

@@ -1,3 +1,4 @@
+import uuidv1 from 'uuid/v1';
 
 export const arrayToIndexedObject = (array, indexProperty) =>
     array.reduce((obj, item) =>    // eslint-disable-next-line
@@ -43,4 +44,9 @@ export const timeSince = (timeStamp) => {
         const year = timeStamp.getFullYear() == now.getFullYear() ? "" :  " "+timeStamp.getFullYear();
         return day + " " + month + year;
     }
+};
+
+
+export const getUUID = () =>{
+    return uuidv1(); 
 };

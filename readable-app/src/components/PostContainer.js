@@ -1,16 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PostActions from '../redux/posts/actions';
-import MessageActions from '../redux/messages/actions';
 import Post from './Post';
 import {Spin} from 'antd';
-import MessageList from './MessageListContainer';
+import CommentsListContainer from './CommentListContainer';
+import PostList from './PostList';
 
 const mapStateToProps = (state, props) => {
-    const postID = this.props.match.params.post_id;
+    console.log("state", state);
+    console.log("props", props);
+    const postID = props.match.params.post_id;
     return{
-        ...state.posts[postID],
-        loading: state.messages[postID],
+        post: [state.posts[postID]],
+        postLoading: state.loading.posts.loading,
+        messagesLoading:    false,
+        messages:[],
         ...props
     };
 };
@@ -18,7 +22,8 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchPost: (postID) => dispatch(PostActions.fetchPost(postID)),
-        fethMessages: (postID) => dispatch(MessageActions.fetchMessages(postID)),
+        voteAction : (postID, option) => {dispatch(PostActions.votePost(postID, option));},
+        deletePost: (postID) => dispatch(PostActions.deletePost(postID)),
     };
 };
 
@@ -26,22 +31,32 @@ const mapDispatchToProps = (dispatch, props) => {
 class PostContainer extends React.Component{
 
     componentDidMount(){
-        const postID = this.props.match.params.post_id;
         const category = this.props.match.params.category;
+        const postID = this.props.match.params.post_id;
         
-        this.props.fetchMessages(postID);
+        this.props.fetchPost(postID);
+       
     }
 
     render(){
-        return(
-            <Post key={this.props.postID} post={this.props.post}>
-              {!this.props.loading &&
-               <Spin /> }
-              {this.props.loading &&
-               <MessageList messages={this.props.messages} postID={this.props.postID}/>}
-            </Post>
-        );
+        const postID = this.props.match.params.post_id;
+
+        console.log("render props", this.props);
+
+        if(this.props.postLoading !== false){
+            return (<Spin />);
+        }else{
+            return(
+                <React.Fragment>
+                  <PostList key={postID} posts={this.props.post}
+                            voteAction={this.props.voteAction}
+                            deletePost={this.props.deletePost}/>
+                  <CommentsListContainer postID={postID}/>
+                </React.Fragment>
+            );
+        }
     }
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostContainer);

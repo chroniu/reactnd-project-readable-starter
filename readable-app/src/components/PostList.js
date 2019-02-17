@@ -39,7 +39,7 @@ class PostList extends React.Component{
             <List
               size="large"
               itemLayout="vertical"
-              header={
+              header={orderedPosts.length > 1 &&
                   (<React.Fragment>
                      Order By: 
                      <Select defaultValue="timestamp" onChange={this.changeOrderAttribute}>
@@ -54,7 +54,8 @@ class PostList extends React.Component{
               }
               dataSource={orderedPosts}
               
-              renderItem={post => <PostSummary post={post} voteAction={voteAction} key={post.id}/>}
+              renderItem={post => <PostSummary post={post} voteAction={voteAction}
+                                               key={post.id} deletePost={this.props.deletePost}/>}
             />
             
         );

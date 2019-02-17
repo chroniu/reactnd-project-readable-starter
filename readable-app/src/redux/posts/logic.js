@@ -1,6 +1,6 @@
 import {createLogic} from 'redux-logic';
 import * as Actions from './actions.js';
-import {arrayToIndexedObject} from '../../utils/helpers.js';
+import {arrayToIndexedObject, getUUID} from '../../utils/helpers.js';
 
 
 const fetchPostsLogic = createLogic({
@@ -12,13 +12,16 @@ const fetchPostsLogic = createLogic({
         failType: Actions.FETCH_POSTS_FAILURE
     },
     process({API, getState, action}){
-        if(action.categoryID === undefined)
+        if(action.postID !== undefined){
+            return API.getPost(action.postID)
+                .then(resp => Object.assign({}, {[resp.id]:{...resp}}));
+        }else if(action.categoryID === undefined)
             return API.getAllPosts().then(resp => arrayToIndexedObject(resp, 'id'));
         else
             return  API.getPosts(action.categoryID).then(resp => arrayToIndexedObject(resp, 'id'));
     }
 });
-
+/*
 const fetchPostLogic = createLogic({
     type: Actions.FETCH_POST,
     latest: true,
@@ -31,7 +34,7 @@ const fetchPostLogic = createLogic({
         return API.getPost(action.postID)
             .then(resp => arrayToIndexedObject(resp, 'id'));
     }
-});
+});*/
 
 const updatePostLogic = createLogic({
     type: Actions.UPDATE_POST,
@@ -42,6 +45,7 @@ const updatePostLogic = createLogic({
         failType: Actions.UPDATE_POST_FAILURE
     },
     process({API, getState, action}){
+        console.log("updatePostLogic", action);
         return API.updatePost(action.post);
     }
 });
@@ -82,9 +86,14 @@ const postPostLogic = createLogic({
         failType: Actions.POST_POST_FAILURE
     },
     process({API, getState, action}){
+        action.post.id = getUUID();
+        action.post.timestamp = new Date().getTime();
+        action.post.commentCount = 0;
+        action.post.deleted = false;
+        action.post.voteScore = 1;
         return API.postPost(action.post);        
     }
 });
 
 
-export default [fetchPostsLogic, fetchPostLogic, updatePostLogic, deletePostLogic, votePostLogic, postPostLogic];
+export default [fetchPostsLogic, updatePostLogic, deletePostLogic, votePostLogic, postPostLogic];

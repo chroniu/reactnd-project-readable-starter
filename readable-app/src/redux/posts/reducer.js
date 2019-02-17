@@ -9,7 +9,6 @@ export const posts = (state = {}, action) =>{
             return {};
         case Actions.FETCH_POSTS_SUCCESS:
             return { ...action.payload};
-
         default: return state;
         }
     }else if(action.type.startsWith('VOTE_POST')){

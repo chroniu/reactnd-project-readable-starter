@@ -26,6 +26,10 @@ const MenuCategories = ({categories, loading}={categories:[], loading:true}) => 
                               <Link to={`/${category.path}`}>{category.name}</Link>
                             </Menu.Item>
                            )}
+
+            <Menu.Item key="new">
+              <Link to='/posts/new/edit'><Icon type="plus-circle"/>New Post</Link>
+            </Menu.Item>
           </Menu>
         </Layout.Header>
     );

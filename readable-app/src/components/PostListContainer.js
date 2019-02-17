@@ -8,7 +8,7 @@ import PostList from './PostList';
 //https://medium.com/stashaway-engineering/react-redux-tips-better-way-to-handle-loading-flags-in-your-reducers-afda42a804c6
 
 const mapStateToProps = (state, props) =>{
-    return {posts:Object.values(state.posts),
+    return {posts: Object.values(state.posts),
             loading: state.loading.posts.loading,
             ...props};
 };
@@ -16,7 +16,8 @@ const mapStateToProps = (state, props) =>{
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchPosts : (category) => dispatch(PostActions.fetchPosts(category)),
-        voteAction : (postID, option) => {dispatch(PostActions.votePost(postID, option));}
+        voteAction : (postID, option) => {dispatch(PostActions.votePost(postID, option));},
+        deletePost: (postID) => dispatch(PostActions.deletePost(postID)),
     };
 };
 
@@ -44,7 +45,9 @@ class PostListContainer extends React.Component{
         if (this.props.loading){
             return(<Spin />);
         }else{
-            return(<PostList posts={this.props.posts} voteAction={this.props.voteAction}/>);
+            return(<PostList posts={this.props.posts}
+                             voteAction={this.props.voteAction}
+                             deletePost={this.props.deletePost}/>);
         }
     }
 };

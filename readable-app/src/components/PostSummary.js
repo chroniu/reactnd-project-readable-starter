@@ -7,7 +7,7 @@ import {timeSince} from '../utils/helpers';
 // from https://ant.design/components/list/
 const IconText = ({ type, text, onClick }) => (
     <span>
-      <Icon type={type} style={{ marginRight: 8 }} onClick={onClick}/>
+      <Icon type={type} style={{ marginRight: 8}} onClick={onClick} />
       {text}
     </span>
 );
@@ -19,14 +19,14 @@ const PostActions = ({postID, voteScore, commentCount, voteAction,}) => [
     <IconText type="message" text="" />
 ];
 
-const PostSummary = ({post, voteAction}) => (
+const PostSummary = ({post, voteAction, deletePost}) => (
     <List.Item
       key={post.id}
       extra={(<React.Fragment>
-                <Link to='/'>
+                <Link to={`/posts/${post.id}/edit`}>
                   <IconText type='edit' text='Edit' />
                 </Link>
-                <IconText type='delete' text='Delete'/>
+                <IconText type='delete' text='Delete' onClick={() => deletePost(post.id)}/>
               </React.Fragment>)}
       actions={PostActions({postID: post.id, voteScore:post.voteScore,
                     commentCount: post.commentCount, voteAction:voteAction})}>
