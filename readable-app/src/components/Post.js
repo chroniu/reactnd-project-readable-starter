@@ -3,26 +3,13 @@
 */
 
 import React from 'react';
-import RichTextEditor from 'react-rte';
+import PostSummary from './PostSummary'; 
 
-export const Post = ({title, description}) => {
-    console.log(description);
-    console.log("x",RichTextEditor.createValueFromString("x"));
+
+export const Post = ({post}) => {
+  
     return(
-        <div className="post-item">
-          <div className="post-item-meta">
-            <h3 className="post-item-title">
-              {title}
-            </h3>
-          </div>
-          <div className="post-item-content">
-         <RichTextEditor
-           value={RichTextEditor.createValueFromString(description)}
-           readOnly={true} />
-          </div>
-          <div className="post-item-actions">
-          </div>
-        </div>
+        <PostSummary post={post}/>
     );
 
 };

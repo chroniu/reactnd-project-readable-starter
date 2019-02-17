@@ -42,7 +42,7 @@ const updatePostLogic = createLogic({
         failType: Actions.UPDATE_POST_FAILURE
     },
     process({API, getState, action}){
-      
+        return API.updatePost(action.post);
     }
 });
 
@@ -55,7 +55,7 @@ const deletePostLogic = createLogic({
         failType: Actions.DELETE_POST_FAILURE
     },
     process({API, getState, action}){
-
+        return API.deletePost(action.postID);
     }
 });
 
@@ -82,7 +82,7 @@ const postPostLogic = createLogic({
         failType: Actions.POST_POST_FAILURE
     },
     process({API, getState, action}){
-
+        return API.postPost(action.post);        
     }
 });
 

@@ -6,6 +6,7 @@ import PostListContainer from './components/PostListContainer';
 import PostContainer from './components/PostContainer';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import {connect} from 'react-redux';
+import PostEdit from './components/PostEdit';
 const {Content} = Layout;
 
 
@@ -26,9 +27,11 @@ class App extends Component {
                   <div style={{ background: '#fff', padding: 24, minHeight: 600 }}>
 
                     <Route exact path='/' component={PostListContainer} todo='TODO FIX'/> 
-                    <Route path='/:category' component={PostListContainer} />
+                    <Route exact path='/:category' component={PostListContainer} />
                     
                     <Route path='/:category/:post_id' component={PostContainer}/>
+
+                    <Route path='/posts/new' component={PostEdit}/>
                   </div>
                 </Content>
               </Layout>
