@@ -45,7 +45,7 @@ class PostListContainer extends React.Component{
         if (this.props.loading){
             return(<Spin />);
         }else{
-            return(<PostList posts={this.props.posts}
+            return(<PostList posts={this.props.posts.filter(x => !x.deleted)}
                              voteAction={this.props.voteAction}
                              deletePost={this.props.deletePost}/>);
         }

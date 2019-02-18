@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import PostActions from '../redux/posts/actions';
 import {Spin} from 'antd';
 import CommentList from './CommentList';
-import MessageList from './MessageListContainer';
-import MessageActions from '../redux/comments/actions';
+import CommentActions from '../redux/comments/actions';
 
 
 const mapStateToProps = (state, props) =>{
@@ -15,7 +14,7 @@ const mapStateToProps = (state, props) =>{
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        fetchComments: (postID) => dispatch(MessageActions.fetchComments(postID)),
+        fetchComments: (postID) => dispatch(CommentActions.fetchComments(postID)),
         voteAction : (postID, option) => {dispatch(PostActions.votePost(postID, option));}
     };
 };

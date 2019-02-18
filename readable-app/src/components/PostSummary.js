@@ -7,7 +7,9 @@ import {timeSince} from '../utils/helpers';
 // from https://ant.design/components/list/
 const IconText = ({ type, text, onClick }) => (
     <span>
-      <Icon type={type} style={{ marginRight: 8}} onClick={onClick} />
+      {onClick !== undefined ? 
+       <Icon type={type} style={{ marginRight: 4, marginLeft:4}} onClick={onClick} />
+       :<Icon type={type} style={{ marginRight: 4, marginLeft:4}}/>}
       {text}
     </span>
 );
@@ -16,7 +18,7 @@ const PostActions = ({postID, voteScore, commentCount, voteAction,}) => [
     <IconText type="star" text={voteScore}/>,
     <IconText type="up" text="" onClick={() => voteAction(postID, "upVote")}/>,
     <IconText type="down" text="" onClick={() => voteAction(postID, "downVote")}/>,
-    <IconText type="message" text="" />
+    <IconText type="message" text={commentCount} />
 ];
 
 const PostSummary = ({post, voteAction, deletePost}) => (
@@ -26,7 +28,7 @@ const PostSummary = ({post, voteAction, deletePost}) => (
                 <Link to={`/posts/${post.id}/edit`}>
                   <IconText type='edit' text='Edit' />
                 </Link>
-                <IconText type='delete' text='Delete' onClick={() => deletePost(post.id)}/>
+                <IconText type='delete' text='' onClick={() => deletePost(post.id)}/>
               </React.Fragment>)}
       actions={PostActions({postID: post.id, voteScore:post.voteScore,
                     commentCount: post.commentCount, voteAction:voteAction})}>

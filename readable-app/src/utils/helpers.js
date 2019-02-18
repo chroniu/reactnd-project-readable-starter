@@ -9,16 +9,18 @@ export const arrayToIndexedObject = (array, indexProperty) =>
    returns a sort helper function for some attribute
 */
 export const  orderArrayBy = (attr) => 
+    (order) =>
     (a, b) => {
+        const signal = order ? 1 : -1;
         const val1 = a[attr]; 
         const val2 = b[attr];
         
         if (val1 > val2)
-            return 1;
+            return 1 * signal;
         else if (val1 < val2)
-            return -1;
+            return -1 * signal;
         else return 0;
-      };
+    };
 
 
 /**
