@@ -35,7 +35,11 @@ export const getAllPosts = () =>
 export const getPost = (postID) =>
   fetch(`${api}/posts/${postID}`, { headers })
     .then(res => res.json())
-    .then(data => data);
+    .then(data =>{
+        if(Object.keys(data).length === 0){
+            return Promise.reject({message:'post not found',
+                                   postID});
+        }else return data;});
 
 export const postPost = (post) =>
     fetch(`${api}/posts`, {

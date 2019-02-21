@@ -6,9 +6,9 @@ export const FETCH_COMMENT = 'FETCH_COMMENT';
 export const FETCH_COMMENT_SUCCESS = 'FETCH_COMMENT_SUCCESS';
 export const FETCH_COMMENT_FAILURE = 'FETCH_COMMENT_FAILURE';
 
-export const COMMENT_COMMENT = 'COMMENT_COMMENT';
-export const COMMENT_COMMENT_SUCCESS = 'COMMENT_COMMENT_SUCCESS';
-export const COMMENT_COMMENT_FAILURE = 'COMMENT_COMMENT_FAILURE'; 
+export const POST_COMMENT = 'POST_COMMENT';
+export const POST_COMMENT_SUCCESS = 'POST_COMMENT_SUCCESS';
+export const POST_COMMENT_FAILURE = 'POST_COMMENT_FAILURE'; 
 
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const UPDATE_COMMENT_SUCCESS = 'UPDATE_COMMENT_SUCCESS';
@@ -38,10 +38,10 @@ export const fetchComment = (commentID) => {
     };
 };
 
-export const deleteComment = (comment) =>{
+export const deleteComment = (commentID) =>{
     return{
         type: DELETE_COMMENT,
-        comment
+        commentID
     };
 };
 
@@ -60,9 +60,9 @@ export const updateComment = (comment) => {
     };
 };
 
-export const commentComment = (comment) =>{
+export const postComment = (comment) =>{
     return{
-        type: COMMENT_COMMENT,
+        type: POST_COMMENT,
         comment
     };
 };
@@ -81,13 +81,13 @@ export default {
     DELETE_COMMENT,
     DELETE_COMMENT_SUCCESS,
     DELETE_COMMENT_FAILURE,
-    COMMENT_COMMENT,
-    COMMENT_COMMENT_SUCCESS,
-    COMMENT_COMMENT_FAILURE,
+    POST_COMMENT,
+    POST_COMMENT_SUCCESS,
+    POST_COMMENT_FAILURE,
     fetchComments,
     fetchComment,
     deleteComment,
     updateComment,
-    commentComment,
+    postComment,
     voteComment
 };

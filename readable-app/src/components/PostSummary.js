@@ -3,16 +3,7 @@ import {List, Skeleton, Icon} from 'antd';
 import {Link} from 'react-router-dom';
 import Timestamp from 'react-timestamp';
 import {timeSince} from '../utils/helpers';
-
-// from https://ant.design/components/list/
-const IconText = ({ type, text, onClick }) => (
-    <span>
-      {onClick !== undefined ? 
-       <Icon type={type} style={{ marginRight: 4, marginLeft:4}} onClick={onClick} />
-       :<Icon type={type} style={{ marginRight: 4, marginLeft:4}}/>}
-      {text}
-    </span>
-);
+import IconText from './IconText';
 
 const PostActions = ({postID, voteScore, commentCount, voteAction,}) => [
     <IconText type="star" text={voteScore}/>,
@@ -34,7 +25,7 @@ const PostSummary = ({post, voteAction, deletePost}) => (
                     commentCount: post.commentCount, voteAction:voteAction})}>
       <List.Item.Meta
         title={<Link to={`/${post.category}/${post.id}`}>{post.title}</Link>}
-        description={`submited ${timeSince(post.timestamp)} ago by ${post.author}`}
+        description={`submited ${timeSince(post.timestamp)} by ${post.author}`}
       />
       {post.body}
     </List.Item>

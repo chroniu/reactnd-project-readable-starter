@@ -9,7 +9,7 @@ const styles = {
     menu:{lineHeight: '64px'}
 };
 
-const MenuCategories = ({categories, loading}={categories:[], loading:true}) => {
+const MenuCategories = ({categories, loading, selectedKey}={categories:[], loading:true,}) => {
     return(
         <Layout.Header>
           <Menu

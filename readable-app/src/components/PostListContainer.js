@@ -9,7 +9,8 @@ import PostList from './PostList';
 
 const mapStateToProps = (state, props) =>{
     return {posts: Object.values(state.posts),
-            loading: state.loading.posts.loading,
+            loading: state.loading.posts,
+            error: state.errors.posts,
             ...props};
 };
 
@@ -41,7 +42,7 @@ class PostListContainer extends React.Component{
     }
     
     render(){
-        
+        console.log("props of PostListContainer", this.props);
         if (this.props.loading){
             return(<Spin />);
         }else{

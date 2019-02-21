@@ -5,16 +5,15 @@ import Post from './Post';
 import {Spin} from 'antd';
 import CommentsListContainer from './CommentListContainer';
 import PostList from './PostList';
+import NotFound from './NotFound';
+
 
 const mapStateToProps = (state, props) => {
-    console.log("state", state);
-    console.log("props", props);
     const postID = props.match.params.post_id;
     return{
-        post: [state.posts[postID]],
-        postLoading: state.loading.posts.loading,
-        messagesLoading:    false,
-        messages:[],
+        post: state.posts[postID],
+        postLoading: (state.loading.posts === undefined ? true: state.loading.posts),
+        postError: (state.errors.posts),
         ...props
     };
 };
@@ -39,16 +38,19 @@ class PostContainer extends React.Component{
     }
 
     render(){
-        const postID = this.props.match.params.post_id;
-
         console.log("render props", this.props);
 
-        if(this.props.postLoading !== false){
+        if(this.props.postLoading){
+            console.log("Rendering spin");
             return (<Spin />);
+        }else if(this.props.postError || this.props.post.deleted){
+            return (<NotFound message='Post Not Found'/>);
         }else{
+            const postID = this.props.post.id;
+
             return(
                 <React.Fragment>
-                  <PostList key={postID} posts={this.props.post}
+                  <PostList key={postID} posts={[this.props.post]}
                             voteAction={this.props.voteAction}
                             deletePost={this.props.deletePost}/>
                   <CommentsListContainer postID={postID}/>

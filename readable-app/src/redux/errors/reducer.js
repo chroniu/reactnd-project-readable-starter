@@ -2,10 +2,9 @@
   Adapted from https://medium.com/stashaway-engineering/react-redux-tips-better-way-to-handle-loading-flags-in-your-reducers-afda42a804c6
 */
 
-const regex = new RegExp('^(FETCH)_([A-Z]*)_?(SUCCESS|FAILURE)?');
+const regex = new RegExp('^(FETCH)_([A-Z]*)_?(FAILURE|SUCCESS)?');
 
-
-export const loading = (state = {}, action) =>{
+export const errors = (state = {}, action) =>{
     const { type } = action;
     const matches = regex.exec(type);
 
@@ -15,6 +14,6 @@ export const loading = (state = {}, action) =>{
 
       return {
         ...state,
-          [resource.toLowerCase()]: (status === undefined ? true : false)
-  };
+          [resource.toLowerCase()]: status === 'FAILURE' ? true: false};
 };
+

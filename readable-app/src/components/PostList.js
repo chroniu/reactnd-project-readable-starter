@@ -16,7 +16,6 @@ class PostList extends React.Component{
     }
     
     changeOrderAttribute = (value) =>{
-        console.log("attribute", value);
         this.setState({
             sortFunc: orderArrayBy(value)
         });
@@ -30,6 +29,7 @@ class PostList extends React.Component{
 
     render(){
         const {posts, voteAction} = this.props;
+       
         const orderedPosts = posts.sort(this.state.sortFunc(this.state.isReverse));
         console.log(this.state.isReverse, "ordered List", this.state.reverse,orderedPosts);
         
