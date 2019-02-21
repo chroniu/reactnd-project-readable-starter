@@ -7,19 +7,18 @@ import CategoryActions from '../redux/categories/actions';
 
 
 const mapStateToProps = (state, props) =>{
-    const commentID = props.commentID;
-//    const postID = props.match.params.post_id;
+    const {commentID, postID} = props.commentID;
     return {comment: state.comments[commentID],
             commentID,
-//            postID,
-            loading: state.loading.comments.loading,
+            postID,
+            loading: state.loading.comments,
             ...props}; 
 };
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        fetchComments : (postID) => dispatch(CommentActions.fetchComments(postID)),
-        submitNewComment : (comment) => dispatch(CommentActions.commentComment(comment)),
+        fetchComment : (commentID) => dispatch(CommentActions.fetchComment(commentID)),
+        submitNewComment : (comment) => dispatch(CommentActions.postComment(comment)),
         updateComment: (comment) => dispatch(CommentActions.updateComment(comment)),
     };
 };
@@ -32,29 +31,15 @@ class CommentEditContainer extends React.Component{
   
     componentDidMount(){
         if(this.props.commentID !== undefined && this.props.commentID !== 'new'){
-//            this.props.fetchComments(this.props.postID);
+            this.props.fetchComments(this.props.commentID);
         }
     }
     
     render(){
-        console.log("commentEditorProps", this.props);
-        const {visible} = this.props;
-        
-        if(this.props.commentID === undefined){
-            return(<React.Fragment/>);
-        }
-        if(this.props.commentID !== 'new'){
-            return(<CommentEdit commentID={this.props.comment.id}
-                                comment={this.props.comment}
-                                history={this.props.history}
-                                updateComment={this.props.updateComment}/>);
-            
-        }{//new comment
-            return(<CommentEdit commentID={'new'}
+            return(<CommentEdit commentID={this.props.commentID}
+                                postID={this.props.postID}
                                 submitNewComment={this.props.submitNewComment}
-                                history={this.props.history}
-                                visible={visible}/>);
-        }
+                                updateComment={this.props.updateComment}/>);
     }
     
 };

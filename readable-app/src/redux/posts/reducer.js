@@ -52,7 +52,7 @@ export const posts = (state = {}, action) =>{
         case Actions.POST_POST:
             return state;
         case Actions.POST_POST_SUCCESS:
-            return state;
+            return {...state, [action.post.ID]:{...action.post}};
         case Actions.POST_POST_FAILURE:
             return state;
         default: return state;

@@ -74,9 +74,8 @@ class PostEdit extends React.Component{
         const {userNameError, titleError, contentError, categoryError} =
               ['userName', 'title', 'content'].map(field => isFieldTouched(field) && getFieldError(field));
 
-        return(
+        return( 
             <Form onSubmit={this.handleSubmit}>
-
               <Form.Item
                 validateStatus={titleError ? 'error' : ''}
                 help={titleError || ''}>
@@ -98,7 +97,7 @@ class PostEdit extends React.Component{
               <Form.Item
                 validateStatus={categoryError ? 'error' : ''}
                 help={categoryError || ''}>
-            
+                
                 {getFieldDecorator('category', {
                     rules: [{ required: true, message: 'You must select a category for the post!' }], })(
                     <Select addonBefore="Category" placeholder="category">
@@ -109,7 +108,7 @@ class PostEdit extends React.Component{
                     </Select>
                 )}
               </Form.Item>
-        
+              
               <Form.Item
                 validateStatus={contentError ? 'error' : ''}
                 help={contentError || ''}>

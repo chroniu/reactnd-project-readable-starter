@@ -52,8 +52,8 @@ class CommentListContainer extends React.Component{
                                deleteComment={this.props.deleteComment}
                                editing={this.handleEditing}
                   />
-                  <CommentEditContainer visible={this.state.editing}
-                                        comment={this.state.commentEditing}/>
+                  <CommentEditContainer postID={this.props.postID}
+                                        commentID={'new'}/>
                 </React.Fragment>);
         }
     }

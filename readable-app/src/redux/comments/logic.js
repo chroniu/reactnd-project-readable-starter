@@ -1,7 +1,4 @@
 
-
-
-
 import {createLogic} from 'redux-logic';
 import * as Actions from './actions';
 import {arrayToIndexedObject, getUUID} from '../../utils/helpers';
@@ -74,10 +71,12 @@ const postCommentLogic = createLogic({
         action.comment.id = getUUID();
         action.comment.timestamp = new Date().getTime();
         action.comment.deleted = false;
+        action.comment.parentDeleted = false;
         action.comment.voteScore = 1;
-        return API.commentComment(action.comment);        
+        console.log("action to API", action);
+        return API.postComment(action.comment);        
     }
 });
 
 
-export default [fetchCommentsLogic, deleteCommentLogic];//, updateCommentLogic, deleteCommentLogic, voteCommentLogic, postCommentLogic];
+export default [fetchCommentsLogic, deleteCommentLogic, voteCommentLogic, postCommentLogic ];//, updateCommentLogic, 
