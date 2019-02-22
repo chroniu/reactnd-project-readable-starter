@@ -57,9 +57,6 @@ class CommentEdit extends React.Component{
         this.setState({submiting: true});
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log("values", values);
-                console.log("commentEdit props", this.props);
-
                 const newComment = Object.assign({}, {...this.props.comment,
                                                       author: values.userName,
                                                       body: values.content,

@@ -19,7 +19,6 @@ class PostEdit extends React.Component{
     }
     
     componentDidMount(){
-        console.log("postEdit props", this.props);
         const postID = this.props.postID;
 
         if(postID !== 'new'){
@@ -120,8 +119,7 @@ class PostEdit extends React.Component{
                   type="primary"
                   htmlType="submit"
                   disabled={hasErrors(getFieldsError())}
-                  loading={this.state.submiting}
-                >
+                  loading={this.state.submiting}>
                   Submit
                 </Button>
               </Form.Item>

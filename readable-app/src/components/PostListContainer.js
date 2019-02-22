@@ -42,7 +42,6 @@ class PostListContainer extends React.Component{
     }
     
     render(){
-        console.log("props of PostListContainer", this.props);
         if (this.props.loading){
             return(<Spin />);
         }else{

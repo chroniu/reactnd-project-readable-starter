@@ -46,7 +46,6 @@ class PostEditContainer extends React.Component{
             if(this.props.post === undefined){
                 return(<Spin />);
             }else{
-                console.log("props postID", this.props);
                 return(<PostEdit postID={this.props.post.id}
                                  post={this.props.post}
                                  history={this.props.history}
@@ -54,8 +53,6 @@ class PostEditContainer extends React.Component{
                                  updatePost={this.props.updatePost}/>);
             }
         }else{//new post
-            console.log("new Post", this.props);
-
             return(<PostEdit postID={'new'}
                              submitNewPost={this.props.submitNewPost}
                              categories={this.props.categories}

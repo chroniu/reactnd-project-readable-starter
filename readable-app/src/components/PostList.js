@@ -31,7 +31,6 @@ class PostList extends React.Component{
         const {posts, voteAction} = this.props;
        
         const orderedPosts = posts.sort(this.state.sortFunc(this.state.isReverse));
-        console.log(this.state.isReverse, "ordered List", this.state.reverse,orderedPosts);
         
         return(
             <List
