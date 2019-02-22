@@ -104,6 +104,7 @@ class PostEdit extends React.Component{
                     <Input addonBefore="Author" placeholder="userName"/>
                 )}
               </Form.Item>
+      
 
               <Form.Item
                 validateStatus={categoryError ? 'error' : ''}
@@ -111,13 +112,22 @@ class PostEdit extends React.Component{
                 
                 {getFieldDecorator('category', {
                     rules: [{ required: true, message: 'You must select a category for the post!' }], })(
-                        <Select addonBefore="Category" placeholder="category">
+
+                    <React.Fragment>
+                    <span className="ant-input-group-wrapper">
+	              <span className="ant-input-wrapper ant-input-group">
+                        <span className="ant-input-group-addon">Category</span>
+                        <Select placeholder="category" style={{width: 150}}>
                           {this.props.categories.map((category) =>
                                                      <Select.Option value={category.path} key={category.path}>
                                                        {category.name}
                                                      </Select.Option>)}
+                          
                         </Select>
-                      
+                      </span>
+                    </span>
+
+                    </React.Fragment>
                 )}
               </Form.Item>
               
