@@ -25,9 +25,8 @@ const mapDispatchToProps = (dispatch, props) => {
 /**
    @description Container for the CommentEditComponent
    @param postID: id of the post that the comment belongs
-   @param commentID: if of an existent comment or 'new' for the creation of a new comment
-Aplies a onClick event on it's children. 
-   The event opens a Modal with a form to edit or create a new comment.
+   @param commentID: id of an existent comment or 'new' for the creation of a new comment
+   @param replyText: optional parameter for new comments
 */
 class CommentEditContainer extends React.Component{
   
@@ -41,6 +40,7 @@ class CommentEditContainer extends React.Component{
             return(<CommentEdit commentID={this.props.commentID}
                                 postID={this.props.postID}
                                 comment={this.props.comment}
+                                replyText={this.props.replyText}
                                 submitNewComment={this.props.submitNewComment}
                                 updateComment={this.props.updateComment}
                                 registerHandleSubmit={this.props.registerHandleSubmit}
@@ -51,6 +51,7 @@ class CommentEditContainer extends React.Component{
 
 CommentEditContainer.propTypes = {
     commentID: PropTypes.string.isRequired,
-    postID: PropTypes.string.isRequired
+    postID: PropTypes.string.isRequired,
+    replyText: PropTypes.string,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CommentEditContainer);

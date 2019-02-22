@@ -4,3 +4,7 @@ blockquote {
     margin-top: 5px;
     padding-left: 16px;
 }
+
+.ql-container{
+    min-height: 250px;
+}

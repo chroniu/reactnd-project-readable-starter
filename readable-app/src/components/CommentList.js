@@ -8,12 +8,14 @@ import renderHTML from 'react-render-html';
 /**
    @description An array with the actions that a comment can have
 */
-const CommentActions = ({postID, commentID, voteScore, voteAction, deleteComment, handleEditing}) => [
+const CommentActions = ({postID, commentID, voteScore, voteAction, deleteComment, handleEditing, handleReplyTo}) => [
     <IconText type="star" text={voteScore}/>,
     <IconText type="up" text="" onClick={() => voteAction(commentID, "upVote")}/>,
-    <IconText type="down" text="" onClick={() => voteAction(commentID, "downVote")}/>,
+    <IconText type="down" text="" onClick={() => voteAction(commentID, "downVotex")}/>,
     <IconText type='edit' text='' onClick={() => handleEditing(commentID)}/>,
-    <IconText type='delete' text='' onClick={() => deleteComment(commentID)}/>
+    <IconText type='delete' text='' onClick={() => deleteComment(commentID)}/>,
+    <span onClick={() => handleReplyTo(commentID)}>Reply to</span>,
+
 ];
 
 /**
@@ -22,8 +24,9 @@ const CommentActions = ({postID, commentID, voteScore, voteAction, deleteComment
    @param voteAction: a function to be called when an vote action is selected
    @param deleteComment: a function to be called when the delete button is selected
    @param handleEditing: a function to be called when the edit button is selected
+   @oaram handleReplyTo: a function to be called when the Reply to is selected
 */
-const CommentList  = ({comments, voteAction, deleteComment, handleEditing}) => (
+const CommentList  = ({comments, voteAction, deleteComment, handleEditing, handleReplyTo}) => (
     <List
       className="comment-list"
       header={`${comments.length} replies`}
@@ -36,8 +39,9 @@ const CommentList  = ({comments, voteAction, deleteComment, handleEditing}) => (
             avatar={(<Icon type="message" />)}
             datetime={timeSince(comment.timestamp)}
             actions={CommentActions({postID: comment.parentId, commentID: comment.id,
-                                     voteScore:comment.voteScore, voteAction:voteAction,
-                                     deleteComment:deleteComment, handleEditing: handleEditing})}
+                                     voteScore: comment.voteScore, voteAction: voteAction,
+                                     deleteComment: deleteComment, handleEditing: handleEditing,
+                                     handleReplyTo: handleReplyTo})}
           />
       )}
     />
@@ -48,6 +52,7 @@ CommentList.propTypes = {
     voteAction: PropTypes.func.isRequired,
     deleteComment: PropTypes.func.isRequired,
     handleEditing: PropTypes.func.isRequired,
+    handleReplyTo: PropTypes.func,
 };
 
 export default CommentList;

@@ -19,6 +19,7 @@ function hasErrors(fieldsError) {
    @param submitNewComment - function to be called to create a new comment
    @param hideSubmitBtn - true to hide the default submit button from the form
    @param registerHandleSubmit - function that will be called when hideSubmitbtn is true. This functions is called with this.handleSubmit function as a param. The function must be called for the form to submit. Is used in the edition modal.
+   @param replyText - string optional parameter. Initializes a new comment 
 */
 class CommentEdit extends React.Component{
     
@@ -38,8 +39,13 @@ class CommentEdit extends React.Component{
         }else{
             this.props.form.setFieldsValue({
                 userName: '',
-                content: '',
+                content: (this.props.replyText !== undefined ?
+                          `<blockquote>${this.props.replyText}</blockquote><br><br><br>`
+                          : ''),
             });
+            console.log("form props", this.props.form);
+            this.inputAuthor.focus();
+//            this.props.form..focus();
         }
         //disable submit button at start
         this.props.form.validateFields();
@@ -56,8 +62,10 @@ class CommentEdit extends React.Component{
 
         const prevCommentID = prevProps.commentID;
         const commentID = this.props.commentID;
-        
+
         if(prevCommentID !== commentID)
+            this.initializeFormValues();
+        else if(prevProps.replyText !== this.props.replyText)
             this.initializeFormValues();
     }
     
@@ -108,7 +116,7 @@ class CommentEdit extends React.Component{
                   help={userNameError || ''}>
                   {getFieldDecorator('userName', {
                       rules: [{ required: true, message: 'Please input your username!' }], })(
-                      <Input addonBefore="Author" placeholder="userName"/>
+                      <Input addonBefore="Author" placeholder="userName" ref={node => this.inputAuthor = node}/>
                   )}
                 </Form.Item>
                 
@@ -147,5 +155,6 @@ CommentEdit.propTypes = {
     submitNewComment: PropTypes.func.isRequired,
     hideSubmitBtn: PropTypes.bool,
     registerHandleSubmit: PropTypes.func,
+    replyText: PropTypes.string,
 };
 export default  Form.create()(CommentEdit);

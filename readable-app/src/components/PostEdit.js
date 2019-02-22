@@ -15,6 +15,8 @@ function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
+
+
 /**
    @description Shows a form the create a new or edit an existent post.
    @param postID - the id of an existent post or 'new' to create a new post
@@ -63,7 +65,6 @@ class PostEdit extends React.Component{
                                                    author: values.userName,
                                                    body: values.content,
                                                    category: values.category});
-
                 if(this.props.postID !== 'new'){
                     this.props.updatePost(newPost);
                     this.props.history.push(`/${newPost.category}/${newPost.id}`);
@@ -105,7 +106,6 @@ class PostEdit extends React.Component{
                 )}
               </Form.Item>
       
-
               <Form.Item
                 validateStatus={categoryError ? 'error' : ''}
                 help={categoryError || ''}>
@@ -113,24 +113,15 @@ class PostEdit extends React.Component{
                 {getFieldDecorator('category', {
                     rules: [{ required: true, message: 'You must select a category for the post!' }], })(
 
-                    <React.Fragment>
-                    <span className="ant-input-group-wrapper">
-	              <span className="ant-input-wrapper ant-input-group">
-                        <span className="ant-input-group-addon">Category</span>
-                        <Select placeholder="category" style={{width: 150}}>
-                          {this.props.categories.map((category) =>
-                                                     <Select.Option value={category.path} key={category.path}>
-                                                       {category.name}
-                                                     </Select.Option>)}
-                          
-                        </Select>
-                      </span>
-                    </span>
-
-                    </React.Fragment>
+                    <Select placeholder="Select the post category">
+                      {this.props.categories.map((category) =>
+                                                 <Select.Option value={category.path} key={category.path}>
+                                                   {category.name}
+                                                 </Select.Option>)}
+                    </Select>
                 )}
               </Form.Item>
-              
+      
               <Form.Item
                 validateStatus={contentError ? 'error' : ''}
                 help={contentError || ''}>
@@ -156,6 +147,12 @@ class PostEdit extends React.Component{
     }
 };
 /**
+
+  
+   <span className="ant-input-group-wrapper">
+   <span className="ant-input-wrapper ant-input-group">
+   <span className="ant-input-group-addon">Category</span>
+
    <Input.TextArea autosize={{ minRows: 10, maxRows: 40 }}
    placeholder="content"/>
 */

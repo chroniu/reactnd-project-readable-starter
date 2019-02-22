@@ -41,7 +41,7 @@ class CommentListContainer extends React.Component{
         });
     }
 
-    onCancel = () =>{
+    onCancel = () => {
         this.setState({
             editing: false,
         });
@@ -51,6 +51,12 @@ class CommentListContainer extends React.Component{
         this.formSubmit();
         this.setState({
             editing: false,
+        });
+    }
+
+    handleReplyTo = (commentID) => {
+        this.setState({
+            replyText: this.props.comments.filter(x => x.id === commentID)[0].body,
         });
     }
 
@@ -68,10 +74,12 @@ class CommentListContainer extends React.Component{
                                voteAction={this.props.voteAction}
                                deleteComment={this.props.deleteComment}
                                handleEditing={this.handleEditing}
+                               handleReplyTo={this.handleReplyTo}
                   />
 
                   <CommentEditContainer postID={this.props.postID}
                                         commentID={'new'}
+                                        replyText={this.state.replyText}
                                         hideSubmitBtn={false}/>
                   
                   <Modal
@@ -81,6 +89,7 @@ class CommentListContainer extends React.Component{
                     onOk={this.onSubmit}>
                     <CommentEditContainer postID={this.props.postID}
                                           commentID={this.state.commentEditingID}
+                                          replyText={this.state.replyText}
                                           registerHandleSubmit={this.registerHandleSubmit}
                                           hideSubmitBtn={true}/>
                   </Modal>
