@@ -15,7 +15,7 @@ const CommentActions = ({postID, commentID, voteScore, voteAction, deleteComment
     <IconText type="star" text={voteScore}/>,
     <IconText type="up" text="" onClick={() => voteAction(commentID, "upVote")}/>,
     <IconText type="down" text="" onClick={() => voteAction(commentID, "downVote")}/>,
-    <IconText type='edit' text='Edit' onClick={() => editing(commentID)}/>,
+    <IconText type='edit' text='' onClick={() => editing(commentID)}/>,
     <IconText type='delete' text='' onClick={() => deleteComment(commentID)}/>
 ];
 

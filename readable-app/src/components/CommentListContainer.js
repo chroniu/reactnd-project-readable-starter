@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PostActions from '../redux/posts/actions';
-import {Spin} from 'antd';
+import {Spin, Modal} from 'antd';
 import CommentList from './CommentList';
 import CommentActions from '../redux/comments/actions';
 import CommentEditContainer from './CommentEditContainer';
@@ -24,7 +24,6 @@ const mapDispatchToProps = (dispatch, props) => {
 class CommentListContainer extends React.Component{
     state = {
         submiting: false,
-        visible: false,
         editing: false
     }
     
@@ -34,13 +33,29 @@ class CommentListContainer extends React.Component{
 
     
     handleEditing = (commentID) => {
-        console.log("handleEditting");
         this.setState({
             editing: true,
-            commentEditing: (commentID !== 'new' ? this.props.comments[commentID] : 'new'),
+            commentEditingID: commentID,
         });
     }
 
+    onCancel = () =>{
+        this.setState({
+            editing: false,
+        });
+    }
+
+    onSubmit = () => {
+        this.formSubmit();
+        this.setState({
+            editing: false,
+        });
+    }
+
+    registerHandleSubmit = (formSubmit) => {
+        this.formSubmit = formSubmit;
+    }
+    
     render(){
         if (this.props.loading){
             return(<Spin />);
@@ -54,6 +69,19 @@ class CommentListContainer extends React.Component{
                   />
                   <CommentEditContainer postID={this.props.postID}
                                         commentID={'new'}/>
+
+                  <Modal
+                    visible={this.state.editing}
+                    title="Update Comment Form"
+                    onCancel={this.onCancel}
+                    onOk={this.onSubmit}
+
+                  >
+                    <CommentEditContainer postID={this.props.postID}
+                                          commentID={this.state.commentEditingID}
+                                          registerHandleSubmit={this.registerHandleSubmit}
+                                          hideSubmitBtn={true}/>
+                  </Modal>
                 </React.Fragment>);
         }
     }

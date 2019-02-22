@@ -7,7 +7,9 @@ import CategoryActions from '../redux/categories/actions';
 
 
 const mapStateToProps = (state, props) =>{
-    const {commentID, postID} = props.commentID;
+    console.log("mapStateToPropsCommentEditContainer", props, state);
+    const {commentID, postID} = props;
+    
     return {comment: state.comments[commentID],
             commentID,
             postID,
@@ -30,16 +32,23 @@ const mapDispatchToProps = (dispatch, props) => {
 class CommentEditContainer extends React.Component{
   
     componentDidMount(){
-        if(this.props.commentID !== undefined && this.props.commentID !== 'new'){
+        if(this.props.commentID !== undefined && this.props.commentID !== 'new' && this.props.comment === undefined){
             this.props.fetchComments(this.props.commentID);
         }
+
+
     }
+
+
     
     render(){
             return(<CommentEdit commentID={this.props.commentID}
                                 postID={this.props.postID}
+                                comment={this.props.comment}
                                 submitNewComment={this.props.submitNewComment}
-                                updateComment={this.props.updateComment}/>);
+                                updateComment={this.props.updateComment}
+                                registerHandleSubmit={this.props.registerHandleSubmit}
+                                hideSubmitBtn={this.props.hideSubmitBtn}/>);
     }
     
 };

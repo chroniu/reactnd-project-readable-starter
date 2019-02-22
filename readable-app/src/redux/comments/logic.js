@@ -79,4 +79,6 @@ const postCommentLogic = createLogic({
 });
 
 
-export default [fetchCommentsLogic, deleteCommentLogic, voteCommentLogic, postCommentLogic ];//, updateCommentLogic, 
+export default [fetchCommentsLogic, deleteCommentLogic,
+                voteCommentLogic, postCommentLogic,
+                updateCommentLogic,];

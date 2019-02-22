@@ -21,6 +21,16 @@ export const comments = (state = {}, action) =>{
             return state;
         default: return state;
         }
+    }else if(action.type.startsWith('UPDATE_COMMENT')){
+        switch(action.type){
+        case Actions.UPDATE_COMMENT:
+            return state;
+        case Actions.UPDATE_COMMENT_SUCCESS:
+            return {...state, [action.payload.id]: action.payload};
+        case Actions.UPDATE_COMMENT_FAILURE:
+            return state;
+        default: return state;
+        }
     }else if(action.type.startsWith('VOTE_COMMENT')){
         switch(action.type){
         case Actions.VOTE_COMMENT:

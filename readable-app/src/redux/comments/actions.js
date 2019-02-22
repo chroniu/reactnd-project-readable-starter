@@ -55,7 +55,7 @@ export const voteComment = (commentID, option) => {
 
 export const updateComment = (comment) => {
     return{
-        type: comment,
+        type: UPDATE_COMMENT,
         comment
     };
 };

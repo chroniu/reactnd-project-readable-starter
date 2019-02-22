@@ -19,14 +19,14 @@ class CommentEdit extends React.Component{
     state = {
         submiting: false,
     }
-    
-    componentDidMount(){
+
+    initializeFormValues = () =>{
         const commentID = this.props.commentID;
 
         if(commentID !== 'new'){
-            const {title, body, author} =  this.props.comment;
+            console.log("ppros", this.props);
+            const {body, author} =  this.props.comment;
             this.props.form.setFieldsValue({
-                title: title,
                 userName: author,
                 content: body,
             });
@@ -34,9 +34,26 @@ class CommentEdit extends React.Component{
         //disable submit button at start
         this.props.form.validateFields();
     }
+        
+    componentDidMount(){
+        this.initializeFormValues();
+    }
+    
+    /*
+      Update only when category on url changes
+     */
+    componentDidUpdate(prevProps, prevState) {
+        const prevCommentID = prevProps.commentID;
+        const commentID = this.props.commentID;
+        
+        if(prevCommentID !== commentID)
+            this.initializeFormValues();
+    }
     
     handleSubmit = (e) => {
-        e.preventDefault();
+        if(e!== undefined)
+            e.preventDefault();
+        
         this.setState({submiting: true});
         this.props.form.validateFields((err, values) => {
             if (!err) {
@@ -52,13 +69,20 @@ class CommentEdit extends React.Component{
                 }else{
                     this.props.updateComment(newComment);
                 }
-
+                this.props.form.resetFields();
+                
                 this.setState({submiting: false});
+                if(this.props.submitCallBack !== undefined)
+                    this.props.submitCallBack();
             }
         });
+        
     }
 
     render(){
+        
+        if(this.props.hideSubmitBtn)
+            this.props.registerHandleSubmit(this.handleSubmit);
 
         const {submiting} = this.state;
         
@@ -68,8 +92,12 @@ class CommentEdit extends React.Component{
         const {userNameError, contentError} =
               ['userName','content'].map(field => isFieldTouched(field) && getFieldError(field));
 
+        const message = (this.props.commentID === 'new' ? 'Post a new comment!' : 'Update your comment');
+        
         return(
             <Form onSubmit={this.handleSubmit}>
+              <Form.Item label={message}/>
+
                 <Form.Item
                   validateStatus={userNameError ? 'error' : ''}
                   help={userNameError || ''}>
@@ -88,16 +116,19 @@ class CommentEdit extends React.Component{
                                       placeholder="content"/>
                   )}
                 </Form.Item>
-                
+
               <Form.Item>
+                {!this.props.hideSubmitBtn &&
                 <Button
-                  type="primary"
-                  htmlType="submit"
-                  disabled={hasErrors(getFieldsError())}
-                  loading={this.state.submiting}>
-                  Submit
-                </Button>
+                    type="primary"
+                    htmlType="submit"
+                    disabled={hasErrors(getFieldsError())}
+                    loading={this.state.submiting}>
+                    Submit
+                 </Button>
+                }
               </Form.Item>
+
             </Form>
         );
     }
@@ -106,7 +137,8 @@ class CommentEdit extends React.Component{
 CommentEdit.propTypes = {
     commentID: PropTypes.string.isRequired,
     updateComment: PropTypes.func.isRequired,
-    submitNewComment: PropTypes.func.isRequired
-    
+    submitNewComment: PropTypes.func.isRequired,
+    hideSubmitBtn: PropTypes.bool,
+
 };
 export default  Form.create()(CommentEdit);

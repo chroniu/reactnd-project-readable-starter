@@ -35,10 +35,6 @@ class PostEdit extends React.Component{
         this.props.form.validateFields();
     }
 
-    changeCategory = (value) => {
-
-    }
-    
     handleSubmit = (e) => {
         e.preventDefault();
         this.setState({submiting: true});
