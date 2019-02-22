@@ -36,9 +36,19 @@ The application server will be initialized and the application will be accessibl
 ## Instructions
 
 
+
 ## Extra libraries 
 
-This project used the following libraries:
- - react-autosuggest: 
- - autosuggest-highlight: to improve the user experience in viewing search suggestions.
+This project used the following extra libraries:
+ - antd
+ - redux-logger
+ - redux-logic
+ - uuid
  
+
+## TODO
+- Internationalization
+- RichText
+- Reply Button
+- Testes on reducers and logic
+- testes on components
