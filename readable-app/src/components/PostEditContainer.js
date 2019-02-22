@@ -1,11 +1,10 @@
-
 import React from 'react';
 import {connect} from 'react-redux';
 import PostActions from '../redux/posts/actions';
 import {Spin} from 'antd';
 import PostEdit from './PostEdit';
 import CategoryActions from '../redux/categories/actions';
-
+import PropTypes from 'prop-types';
 
 
 const mapStateToProps = (state, props) =>{
@@ -28,7 +27,9 @@ const mapDispatchToProps = (dispatch, props) => {
     };
 };
 
-
+/**
+   @description A container for the PostEdit Component
+*/
 class PostEditContainer extends React.Component{
 
     componentDidMount(){
@@ -61,5 +62,7 @@ class PostEditContainer extends React.Component{
     }
     
 };
+
+PostEditContainer.propTypes = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostEditContainer);

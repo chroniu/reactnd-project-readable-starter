@@ -5,7 +5,7 @@ import {Spin} from 'antd';
 import CommentsListContainer from './CommentListContainer';
 import PostList from './PostList';
 import NotFound from './NotFound';
-
+import PropTypes from 'prop-types';
 
 const mapStateToProps = (state, props) => {
     const postID = props.match.params.post_id;
@@ -26,6 +26,10 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 
+/**
+   @description Renders a post with full details.
+   
+*/
 class PostContainer extends React.Component{
 
     componentDidMount(){
@@ -36,10 +40,7 @@ class PostContainer extends React.Component{
     }
 
     render(){
-        console.log("render props", this.props);
-
         if(this.props.postLoading){
-            console.log("Rendering spin");
             return (<Spin />);
         }else if(this.props.postError || this.props.post.deleted){
             return (<NotFound message='Post Not Found'/>);
@@ -56,7 +57,8 @@ class PostContainer extends React.Component{
             );
         }
     }
-
 };
+
+PostContainer.propTypes = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostContainer);

@@ -1,22 +1,44 @@
-# Readable API Server
+#  Project Readable
 
-This is the starter project for the final assessment project for Udacity's Redux course where you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
+## Project Purpose
 
-This repository includes the code for the backend API Server that you'll use to develop and interact with the front-end portion of the project.
+This project was built for the **Nanodegree React Developer**. The purpose of this project is to implement an application in React demonstrating knowledge and understanding about the structure of a React application in addition to using good programming practices in the implementation. The application consists of a reddit like application, where the user can post and comment posts, also vote on posts and comments.
 
-## Start Developing
+## Installing and loading the App
 
-To get started developing right away:
+To run the project it is necessary to have installed the Node> = 8.x and the package manager npm.
 
-* Install and start the API server
-    - `cd api-server`
-    - `npm install`
-    - `node server`
-* In another terminal window, use Create React App to scaffold out the front-end
-    - `create-react-app frontend`
-    - `cd frontend`
-    - `npm start`
+To clone and install the project dependencies, in the terminal use the commands:
+```bash
+   git clone https://github.com/chroniu/reactnd-project-readable-starter
+   cd reactnd-project-readable-starter
+   cd api-server
+   npm install
+   cd ..
+   cd readable-app
+   npm install
+```
 
-## API Server
+With the dependencies installed, first start the api server:
+```bash
+   cd api-server
+   npm start
+```
 
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+After, start the application:
+```bash
+   cd readable-app
+   npm start
+```
+
+The application server will be initialized and the application will be accessible at the address given in the output of the previous command. Usually it will be accessible at: [http://localhost:3000].
+
+## Instructions
+
+
+## Extra libraries 
+
+This project used the following libraries:
+ - react-autosuggest: 
+ - autosuggest-highlight: to improve the user experience in viewing search suggestions.
+ 

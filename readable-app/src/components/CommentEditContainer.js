@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import CommentActions from '../redux/comments/actions';
 import CommentEdit from './CommentEdit';
-
+import PropTypes from 'prop-types';
 
 const mapStateToProps = (state, props) =>{
     const {commentID, postID} = props;
@@ -23,7 +23,10 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 /**
-   @description Aplies a onClick event on it's children. 
+   @description Container for the CommentEditComponent
+   @param postID: id of the post that the comment belongs
+   @param commentID: if of an existent comment or 'new' for the creation of a new comment
+Aplies a onClick event on it's children. 
    The event opens a Modal with a form to edit or create a new comment.
 */
 class CommentEditContainer extends React.Component{
@@ -46,4 +49,8 @@ class CommentEditContainer extends React.Component{
     
 };
 
+CommentEditContainer.propTypes = {
+    commentID: PropTypes.string.isRequired,
+    postID: PropTypes.string.isRequired
+};
 export default connect(mapStateToProps, mapDispatchToProps)(CommentEditContainer);

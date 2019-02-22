@@ -4,13 +4,23 @@
 
 import React from 'react';
 import {Form, Input, Button, Select, } from 'antd';
+import PropTypes from 'prop-types';
 
 // based on https://ant.design/components/form/
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
-
+/**
+   @description Shows a form the create a new or edit an existent post.
+   @param postID - the id of an existent post or 'new' to create a new post
+   @param post - the post to edit. Only used when postID !== 'new'
+   @param history - react-router-dom history object
+   @param categories - an array with the existent categories that a post could have
+   @param submitNewPost - action to submit a new post
+   @param updatePost - action to update a post
+          
+*/
 class PostEdit extends React.Component{
     state = {
         submiting: false
@@ -124,6 +134,14 @@ class PostEdit extends React.Component{
             </Form>
         );
     }
+};
+
+PostEdit.propTypes = {
+    postID: PropTypes.string.isRequired,
+    post: PropTypes.object,
+    categories: PropTypes.array.isRequired,
+    submitNewPost: PropTypes.func,
+    updatePost:PropTypes.func,
 };
 
 export default  Form.create()(PostEdit);

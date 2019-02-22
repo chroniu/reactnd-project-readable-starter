@@ -7,8 +7,14 @@ import PostSummary from './PostSummary';
 import { Switch } from 'antd';
 import { Select } from 'antd';
 import {orderArrayBy} from '../utils/helpers';
+import PropTypes from 'prop-types';
 
-
+/**
+   @description Shows a List of Posts with an ordenation option when the posts have more than 1 post.
+   @param posts an array of posts
+   @param voteAction: a function to be called when an vote action is selected
+   @param deleteComment: a function to be called when the delete button is selected
+*/
 class PostList extends React.Component{
     state = {
         sortFunc: orderArrayBy('timestamp'),
@@ -28,7 +34,7 @@ class PostList extends React.Component{
     }
 
     render(){
-        const {posts, voteAction} = this.props;
+        const {posts, voteAction, deletePost} = this.props;
        
         const orderedPosts = posts.sort(this.state.sortFunc(this.state.isReverse));
         
@@ -49,11 +55,16 @@ class PostList extends React.Component{
                        </React.Fragment>)}
               dataSource={orderedPosts}
               renderItem={post => <PostSummary post={post} voteAction={voteAction}
-                                               key={post.id} deletePost={this.props.deletePost}/>}
+                                               key={post.id} deletePost={deletePost}/>}
             />
             
         );
     }
 };
 
+PostList.propTypes = {
+    posts: PropTypes.array.isRequired,
+    voteAction: PropTypes.func.isRequired,
+    deletePost: PropTypes.func.isRequired
+};
 export default PostList;

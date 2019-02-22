@@ -1,15 +1,17 @@
 import React from 'react';
-
 import {Menu, Icon}   from 'antd';
 import {Link} from "react-router-dom";
 import {Layout} from 'antd';
-
+import PropTypes from 'prop-types';
 
 const styles = {
     menu:{lineHeight: '64px'}
 };
 
-const MenuCategories = ({categories, loading, selectedKey}={categories:[], loading:true,}) => {
+/**
+   @description Shows the menu of the app.
+*/
+const MenuCategories = ({categories}={categories:[]}) => {
     return(
         <Layout.Header>
           <Menu
@@ -33,7 +35,10 @@ const MenuCategories = ({categories, loading, selectedKey}={categories:[], loadi
           </Menu>
         </Layout.Header>
     );
-//            <Menu.Item key="config">Configurations</Menu.Item>
+};
+
+MenuCategories.propTypes = {
+    categories: PropTypes.array.isRequired,
 };
 
 export default MenuCategories;

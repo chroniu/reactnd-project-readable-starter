@@ -3,13 +3,24 @@ import {List} from 'antd';
 import {Link} from 'react-router-dom';
 import {timeSince} from '../utils/helpers';
 import IconText from './IconText';
+import PropTypes from 'prop-types';
 
+/**
+   @description An array with the actions that a post can have
+*/
 const PostActions = ({postID, voteScore, commentCount, voteAction,}) => [
     <IconText type="star" text={voteScore}/>,
     <IconText type="up" text="" onClick={() => voteAction(postID, "upVote")}/>,
     <IconText type="down" text="" onClick={() => voteAction(postID, "downVote")}/>,
     <IconText type="message" text={commentCount} />
 ];
+
+/**
+   @description Show a List of posts
+   @param post: the post to show
+   @param voteAction: a function to be called when an vote action is selected
+   @param deletePost: a function to be called when the delete button is selected
+*/
 
 const PostSummary = ({post, voteAction, deletePost}) => (
     <List.Item
@@ -31,5 +42,10 @@ const PostSummary = ({post, voteAction, deletePost}) => (
 );
 
 
+PostSummary.propTypes = {
+    post: PropTypes.object.isRequired,
+    voteAction: PropTypes.func.isRequired,
+    deletePost: PropTypes.func.isRequired,
+};
 
 export default PostSummary;

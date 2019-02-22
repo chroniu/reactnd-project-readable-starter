@@ -4,9 +4,9 @@ import {Spin, Modal} from 'antd';
 import CommentList from './CommentList';
 import CommentActions from '../redux/comments/actions';
 import CommentEditContainer from './CommentEditContainer';
+import PropTypes from 'prop-types';
 
 const mapStateToProps = (state, props) =>{
-    console.log("mapStateToProps of CommentListContainer", props);
     return {comments: Object.values(state.comments),
             loading: (state.loading.comments === undefined ? true: state.loading.comments),
             ...props};
@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch, props) => {
     };
 };
 
+/**
+   @description Shows a list of comments, a form to submit new comments and a modal to edit existent comments.
+*/
 class CommentListContainer extends React.Component{
     state = {
         submiting: false,
@@ -64,7 +67,7 @@ class CommentListContainer extends React.Component{
                   <CommentList comments={this.props.comments.filter(comment => !comment.deleted)}
                                voteAction={this.props.voteAction}
                                deleteComment={this.props.deleteComment}
-                               editing={this.handleEditing}
+                               handleEditing={this.handleEditing}
                   />
                   <CommentEditContainer postID={this.props.postID}
                                         commentID={'new'}/>
@@ -86,6 +89,7 @@ class CommentListContainer extends React.Component{
     }
 };
 
+CommentListContainer.propTypes = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentListContainer);
 

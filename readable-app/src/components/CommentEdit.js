@@ -1,16 +1,21 @@
-/**
-   Component for creating New Comments and Editing existent ones
-*/
+// based on https://ant.design/components/form/
 import React from 'react';
 import {Form, Input, Button,} from 'antd';
 import PropTypes from 'prop-types';
 
-// based on https://ant.design/components/form/
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
-// based on https://ant.design/components/modal/
+/**
+   @description Component with a form for creating new comments and editing existent ones.
+   @param commentID - the id of an existent comment or 'new' to create a new comment
+   @param postID - the id of the post that the comment belongs
+   @param updateComment - function to be called to update a comment
+   @param submitNewComment - function to be called to create a new comment
+   @param hideSubmitBtn - true to hide the default submit button from the form
+   @param registerHandleSubmit - function that will be called when hideSubmitbtn is true. This functions is called with this.handleSubmit function as a param. The function must be called for the form to submit. Is used in the edition modal.
+*/
 class CommentEdit extends React.Component{
     
     state = {
@@ -66,8 +71,6 @@ class CommentEdit extends React.Component{
                 this.props.form.resetFields();
                 
                 this.setState({submiting: false});
-                if(this.props.submitCallBack !== undefined)
-                    this.props.submitCallBack();
             }
         });
         
@@ -130,9 +133,10 @@ class CommentEdit extends React.Component{
 
 CommentEdit.propTypes = {
     commentID: PropTypes.string.isRequired,
+    postID: PropTypes.string.isRequired,
     updateComment: PropTypes.func.isRequired,
     submitNewComment: PropTypes.func.isRequired,
     hideSubmitBtn: PropTypes.bool,
-
+    registerHandleSubmit: PropTypes.func,
 };
 export default  Form.create()(CommentEdit);

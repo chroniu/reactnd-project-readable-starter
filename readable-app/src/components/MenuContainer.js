@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Menu from './Menu';
 import CategoryActions from '../redux/categories/actions';
+import PropTypes from 'prop-types';
 
 const mapStateToProps = (state, props) =>{
     if(state.loading.categories)
@@ -10,11 +11,9 @@ const mapStateToProps = (state, props) =>{
         return {categories:Object.values(state.categories)};
 };
 
-/*const mapDispatchToProps = (dispatch, props) =>{
-    
-};
+/**
+   @description A container component for the Menu.
 */
-
 class MenuContainer extends React.Component{
     componentDidMount(){
         this.props.dispatch(CategoryActions.fetchCategories());
@@ -28,4 +27,5 @@ class MenuContainer extends React.Component{
 
 };
 
+MenuContainer.propTypes = { };
 export default connect(mapStateToProps)(MenuContainer);
