@@ -12,8 +12,8 @@ const mapStateToProps = (state, props) =>{
 
     return {post: state.posts[postID],
             postID: postID,
-            loading: state.loading.posts.loading,
-            categories: (state.loading.categories.loading ? [] :
+            loading: state.loading.posts,
+            categories: (state.loading.categories ? [] :
                          Object.values(state.categories)),
             ...props}; 
 };

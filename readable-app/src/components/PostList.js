@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
    @param posts an array of posts
    @param voteAction: a function to be called when an vote action is selected
    @param deleteComment: a function to be called when the delete button is selected
+   @param showBody: show the full body of the posts
 */
 class PostList extends React.Component{
     state = {
@@ -55,7 +56,8 @@ class PostList extends React.Component{
                        </React.Fragment>)}
               dataSource={orderedPosts}
               renderItem={post => <PostSummary post={post} voteAction={voteAction}
-                                               key={post.id} deletePost={deletePost}/>}
+                                               key={post.id} deletePost={deletePost}
+                                               showBody={this.props.showBody}/>}
             />
             
         );
@@ -65,6 +67,8 @@ class PostList extends React.Component{
 PostList.propTypes = {
     posts: PropTypes.array.isRequired,
     voteAction: PropTypes.func.isRequired,
-    deletePost: PropTypes.func.isRequired
+    deletePost: PropTypes.func.isRequired,
+    showBody: PropTypes.bool,
+    
 };
 export default PostList;

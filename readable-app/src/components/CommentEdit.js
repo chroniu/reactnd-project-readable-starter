@@ -2,6 +2,10 @@
 import React from 'react';
 import {Form, Input, Button,} from 'antd';
 import PropTypes from 'prop-types';
+import ReactQuill from 'react-quill';
+import richTextOptions from '../utils/quill-toolbar';
+import 'react-quill/dist/quill.snow.css';
+
 
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -24,13 +28,17 @@ class CommentEdit extends React.Component{
 
     initializeFormValues = () =>{
         const commentID = this.props.commentID;
-
+        
         if(commentID !== 'new'){
-            console.log("ppros", this.props);
             const {body, author} =  this.props.comment;
             this.props.form.setFieldsValue({
                 userName: author,
                 content: body,
+            });
+        }else{
+            this.props.form.setFieldsValue({
+                userName: '',
+                content: '',
             });
         }
         //disable submit button at start
@@ -45,6 +53,7 @@ class CommentEdit extends React.Component{
       Update only when category on url changes
      */
     componentDidUpdate(prevProps, prevState) {
+
         const prevCommentID = prevProps.commentID;
         const commentID = this.props.commentID;
         
@@ -77,7 +86,6 @@ class CommentEdit extends React.Component{
     }
 
     render(){
-        
         if(this.props.hideSubmitBtn)
             this.props.registerHandleSubmit(this.handleSubmit);
 
@@ -109,8 +117,9 @@ class CommentEdit extends React.Component{
                   help={contentError || ''}>
                   {getFieldDecorator('content', {
                       rules: [{ required: true, message: 'The comment must not be empty !' }], })(
-                      <Input.TextArea autosize={{ minRows: 10, maxRows: 40 }}
-                                      placeholder="content"/>
+                      <ReactQuill  modules={richTextOptions.modules}
+                                   formats={richTextOptions.formats}
+                                   theme={richTextOptions.theme}/>
                   )}
                 </Form.Item>
 

@@ -3,8 +3,12 @@
 */
 
 import React from 'react';
-import {Form, Input, Button, Select, } from 'antd';
+import {Form, Input, Button, Select, Col} from 'antd';
 import PropTypes from 'prop-types';
+import ReactQuill from 'react-quill';
+import richTextOptions from '../utils/quill-toolbar';
+import 'react-quill/dist/quill.snow.css';
+
 
 // based on https://ant.design/components/form/
 function hasErrors(fieldsError) {
@@ -37,6 +41,12 @@ class PostEdit extends React.Component{
                 content: body,
                 category: category
             });
+        }else{
+            this.props.form.setFieldsValue({
+                title: '',
+                userName: '',
+                content: '',
+            });
         }
          //disable submit button at start
         this.props.form.validateFields();
@@ -63,14 +73,12 @@ class PostEdit extends React.Component{
                 }
 
                 this.setState({submiting: false});
-
             }
         });
     }
 
 
     render(){
-        
         const {getFieldDecorator, getFieldsError,
                getFieldError, isFieldTouched,} = this.props.form;
 
@@ -103,12 +111,13 @@ class PostEdit extends React.Component{
                 
                 {getFieldDecorator('category', {
                     rules: [{ required: true, message: 'You must select a category for the post!' }], })(
-                    <Select addonBefore="Category" placeholder="category">
-                      {this.props.categories.map((category) =>
-                                                 <Select.Option value={category.path} key={category.path}>
-                                                   {category.name}
-                                                 </Select.Option>)}
-                    </Select>
+                        <Select addonBefore="Category" placeholder="category">
+                          {this.props.categories.map((category) =>
+                                                     <Select.Option value={category.path} key={category.path}>
+                                                       {category.name}
+                                                     </Select.Option>)}
+                        </Select>
+                      
                 )}
               </Form.Item>
               
@@ -117,8 +126,9 @@ class PostEdit extends React.Component{
                 help={contentError || ''}>
                 {getFieldDecorator('content', {
                     rules: [{ required: true, message: 'The post must not be empty !' }], })(
-                    <Input.TextArea autosize={{ minRows: 10, maxRows: 40 }}
-                                    placeholder="content"/>
+                    <ReactQuill  modules={richTextOptions.modules}
+                                 formats={richTextOptions.formats}
+                                 theme={richTextOptions.theme}/>
                 )}
               </Form.Item>
               
@@ -135,7 +145,10 @@ class PostEdit extends React.Component{
         );
     }
 };
-
+/**
+   <Input.TextArea autosize={{ minRows: 10, maxRows: 40 }}
+   placeholder="content"/>
+*/
 PostEdit.propTypes = {
     postID: PropTypes.string.isRequired,
     post: PropTypes.object,

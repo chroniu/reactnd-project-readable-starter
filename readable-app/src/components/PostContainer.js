@@ -51,7 +51,8 @@ class PostContainer extends React.Component{
                 <React.Fragment>
                   <PostList key={postID} posts={[this.props.post]}
                             voteAction={this.props.voteAction}
-                            deletePost={this.props.deletePost}/>
+                            deletePost={this.props.deletePost}
+                            showBody={true}/>
                   <CommentsListContainer postID={postID}/>
                 </React.Fragment>
             );

@@ -69,16 +69,16 @@ class CommentListContainer extends React.Component{
                                deleteComment={this.props.deleteComment}
                                handleEditing={this.handleEditing}
                   />
-                  <CommentEditContainer postID={this.props.postID}
-                                        commentID={'new'}/>
 
+                  <CommentEditContainer postID={this.props.postID}
+                                        commentID={'new'}
+                                        hideSubmitBtn={false}/>
+                  
                   <Modal
                     visible={this.state.editing}
                     title="Update Comment Form"
                     onCancel={this.onCancel}
-                    onOk={this.onSubmit}
-
-                  >
+                    onOk={this.onSubmit}>
                     <CommentEditContainer postID={this.props.postID}
                                           commentID={this.state.commentEditingID}
                                           registerHandleSubmit={this.registerHandleSubmit}
