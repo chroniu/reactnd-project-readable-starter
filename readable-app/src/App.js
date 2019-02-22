@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'antd/dist/antd.css';
 import {Layout} from 'antd';
 import MenuContainer from './components/MenuContainer';
 import PostListContainer from './components/PostListContainer';
@@ -7,6 +6,8 @@ import PostContainer from './components/PostContainer';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import {connect} from 'react-redux';
 import PostEditContainer from './components/PostEditContainer';
+import 'antd/dist/antd.css';
+import './App.css';
 
 const {Content} = Layout;
 
