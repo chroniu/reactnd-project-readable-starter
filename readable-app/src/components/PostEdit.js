@@ -3,9 +3,7 @@
 */
 
 import React from 'react';
-import {Form, Input, Button, Select, Modal, TextArea} from 'antd';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; // ES6
+import {Form, Input, Button, Select, } from 'antd';
 
 // based on https://ant.design/components/form/
 function hasErrors(fieldsError) {

@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import PostActions from '../redux/posts/actions';
 import {Spin, Modal} from 'antd';
 import CommentList from './CommentList';
 import CommentActions from '../redux/comments/actions';

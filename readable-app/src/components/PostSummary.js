@@ -1,7 +1,6 @@
 import React from 'react';
-import {List, Skeleton, Icon} from 'antd';
+import {List} from 'antd';
 import {Link} from 'react-router-dom';
-import Timestamp from 'react-timestamp';
 import {timeSince} from '../utils/helpers';
 import IconText from './IconText';
 

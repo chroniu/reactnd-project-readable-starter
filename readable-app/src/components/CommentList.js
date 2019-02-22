@@ -3,13 +3,8 @@
 */
 import React from 'react';
 import {List, Comment, Icon} from 'antd';
-import { Switch } from 'antd';
-import { Select } from 'antd';
-import {orderArrayBy} from '../utils/helpers';
 import {timeSince} from '../utils/helpers';
 import IconText from './IconText';
-import {Link} from 'react-router-dom';
-import CommentEditContainer from './CommentEditContainer';
 
 const CommentActions = ({postID, commentID, voteScore, voteAction, deleteComment, editing}) => [
     <IconText type="star" text={voteScore}/>,

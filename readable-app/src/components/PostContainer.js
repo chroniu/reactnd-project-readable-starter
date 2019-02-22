@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PostActions from '../redux/posts/actions';
-import Post from './Post';
 import {Spin} from 'antd';
 import CommentsListContainer from './CommentListContainer';
 import PostList from './PostList';
@@ -30,7 +29,6 @@ const mapDispatchToProps = (dispatch, props) => {
 class PostContainer extends React.Component{
 
     componentDidMount(){
-        const category = this.props.match.params.category;
         const postID = this.props.match.params.post_id;
         
         this.props.fetchPost(postID);

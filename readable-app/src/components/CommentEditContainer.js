@@ -1,9 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import CommentActions from '../redux/comments/actions';
-import {Spin} from 'antd';
 import CommentEdit from './CommentEdit';
-import CategoryActions from '../redux/categories/actions';
 
 
 const mapStateToProps = (state, props) =>{
