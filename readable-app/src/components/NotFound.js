@@ -2,6 +2,7 @@ import React from 'react';
 import {Icon} from 'antd';
 import PropTypes from 'prop-types';
 
+
 /**
    @description Shows a 404 error page with an optional message
    @param message - optional string message

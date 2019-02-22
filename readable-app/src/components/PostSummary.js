@@ -23,7 +23,6 @@ const PostActions = ({postID, voteScore, commentCount, voteAction,}) => [
    @param deletePost: a function to be called when the delete button is selected
    @param showBody: show the body of the post
 */
-
 const PostSummary = ({post, voteAction, deletePost, showBody} = {showBody:false}) => (
     <List.Item
       key={post.id}
@@ -34,17 +33,13 @@ const PostSummary = ({post, voteAction, deletePost, showBody} = {showBody:false}
                 <IconText type='delete' text='' onClick={() => deletePost(post.id)}/>
               </React.Fragment>)}
       actions={PostActions({postID: post.id, voteScore:post.voteScore,
-                    commentCount: post.commentCount, voteAction:voteAction})}>
+                            commentCount: post.commentCount, voteAction:voteAction})}>
       <List.Item.Meta
         title={<Link to={`/${post.category}/${post.id}`}>{post.title}</Link>}
-        description={`submited ${timeSince(post.timestamp)} by ${post.author}`}
-      />
+        description={`submited ${timeSince(post.timestamp)} by ${post.author}`}/>
       {showBody && renderHTML(post.body)}
-
-
     </List.Item>
 );
-//<div dangerouslySetInnerHTML={{ __html: post.body }} />
 
 PostSummary.propTypes = {
     post: PropTypes.object.isRequired,

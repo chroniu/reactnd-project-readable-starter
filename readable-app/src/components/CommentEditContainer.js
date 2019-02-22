@@ -54,4 +54,5 @@ CommentEditContainer.propTypes = {
     postID: PropTypes.string.isRequired,
     replyText: PropTypes.string,
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(CommentEditContainer);

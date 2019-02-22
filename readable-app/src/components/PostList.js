@@ -1,6 +1,3 @@
-/**
-   Shows a List of Posts
-*/
 import React from 'react';
 import {List} from 'antd';
 import PostSummary from './PostSummary';
@@ -71,4 +68,5 @@ PostList.propTypes = {
     showBody: PropTypes.bool,
     
 };
+
 export default PostList;

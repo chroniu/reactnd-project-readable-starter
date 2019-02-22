@@ -1,8 +1,6 @@
-
 import {createLogic} from 'redux-logic';
 import * as Actions from './actions';
 import {arrayToIndexedObject, getUUID} from '../../utils/helpers';
-
 
 const fetchCommentsLogic = createLogic({
     type: Actions.FETCH_COMMENTS,
@@ -73,7 +71,7 @@ const postCommentLogic = createLogic({
         action.comment.deleted = false;
         action.comment.parentDeleted = false;
         action.comment.voteScore = 1;
-        console.log("action to API", action);
+
         return API.postComment(action.comment);        
     }
 });

@@ -35,6 +35,31 @@ The application server will be initialized and the application will be accessibl
 
 ## Instructions
 
+The application allows:
+- Posts
+  - Create, update and delete posts;
+  - rich-text post style
+  - vote post
+  - down vote post
+  - order posts by timestamp, votes and comments
+  - comment on a post
+- Comments
+  - Create, update and delete comments;
+  - rich-text commentstyle
+  - vote comment
+  - down vote comment
+  - reply a comment
+
+Some screenshots of the aplication:
+
+![Aplication at root](screen-root.png "Aplication at root)
+
+
+![New comment](screen-new-comment.png "New comment form")
+
+
+![New post](screen-new-post.png "New post form")
+
 
 
 ## Extra libraries 
@@ -44,11 +69,10 @@ This project used the following extra libraries:
  - redux-logger
  - redux-logic
  - uuid
+ - react-render-html
+ 
+ 
  
 
-## TODO
-- Internationalization
-- RichText
-- Reply Button
-- Testes on reducers and logic
-- testes on components
+
+

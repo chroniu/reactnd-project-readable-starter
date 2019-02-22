@@ -6,7 +6,6 @@ import CommentsListContainer from './CommentListContainer';
 import PostList from './PostList';
 import NotFound from './NotFound';
 
-
 const mapStateToProps = (state, props) => {
     const postID = props.match.params.post_id;
     return{
@@ -35,7 +34,6 @@ class PostContainer extends React.Component{
         const postID = this.props.match.params.post_id;
         
         this.props.fetchPost(postID);
-       
     }
 
     render(){

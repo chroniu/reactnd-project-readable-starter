@@ -2,7 +2,6 @@ import {createLogic} from 'redux-logic';
 import * as Actions from './actions.js';
 import {arrayToIndexedObject} from '../../utils/helpers.js';
 
-
 const categoriesLogic = createLogic({
     type: Actions.FETCH_CATEGORIES,
     latest: true,

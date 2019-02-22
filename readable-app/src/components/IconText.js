@@ -1,6 +1,7 @@
 import {Icon} from 'antd';
 import React from 'react';
 import PropTypes from 'prop-types';
+
 /**
    @description - A component that shows an icon with a text.
    from https://ant.design/components/list/
@@ -12,11 +13,10 @@ const IconText = ({ type, text, onClick }) => (
     <span>
       {onClick !== undefined ? 
        <Icon type={type} style={{ marginRight: 4, marginLeft:4}} onClick={onClick} />
-       :<Icon type={type} style={{ marginRight: 4, marginLeft:4}}/>}
+       : <Icon type={type} style={{ marginRight: 4, marginLeft:4}}/>}
       {text}
     </span>
 );
-
 
 IconText.propTypes = {
     type: PropTypes.string.isRequired,

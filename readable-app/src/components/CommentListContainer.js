@@ -74,8 +74,7 @@ class CommentListContainer extends React.Component{
                                voteAction={this.props.voteAction}
                                deleteComment={this.props.deleteComment}
                                handleEditing={this.handleEditing}
-                               handleReplyTo={this.handleReplyTo}
-                  />
+                               handleReplyTo={this.handleReplyTo}/>
 
                   <CommentEditContainer postID={this.props.postID}
                                         commentID={'new'}
@@ -97,7 +96,6 @@ class CommentListContainer extends React.Component{
         }
     }
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentListContainer);
 

@@ -1,6 +1,5 @@
 import * as Actions from './actions.js';
 
-
 export const categories = (state ={}, action) =>{
     switch(action.type){
     case Actions.FETCH_CATEGORIES:

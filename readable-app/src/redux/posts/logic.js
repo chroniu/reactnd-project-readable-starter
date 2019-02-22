@@ -45,7 +45,6 @@ const updatePostLogic = createLogic({
         failType: Actions.UPDATE_POST_FAILURE
     },
     process({API, getState, action}){
-        console.log("updatePostLogic", action);
         return API.updatePost(action.post);
     }
 });

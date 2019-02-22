@@ -8,6 +8,7 @@ const styles = {
     menu:{lineHeight: '64px'}
 };
 
+
 /**
    @description Shows the menu of the app.
 */

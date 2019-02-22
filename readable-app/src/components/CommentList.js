@@ -5,6 +5,7 @@ import IconText from './IconText';
 import PropTypes from 'prop-types';
 import renderHTML from 'react-render-html';
 
+
 /**
    @description An array with the actions that a comment can have
 */
@@ -41,8 +42,7 @@ const CommentList  = ({comments, voteAction, deleteComment, handleEditing, handl
             actions={CommentActions({postID: comment.parentId, commentID: comment.id,
                                      voteScore: comment.voteScore, voteAction: voteAction,
                                      deleteComment: deleteComment, handleEditing: handleEditing,
-                                     handleReplyTo: handleReplyTo})}
-          />
+                                     handleReplyTo: handleReplyTo})}/>
       )}
     />
 );

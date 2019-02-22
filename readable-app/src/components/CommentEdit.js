@@ -43,9 +43,7 @@ class CommentEdit extends React.Component{
                           `<blockquote>${this.props.replyText}</blockquote><br><br><br>`
                           : ''),
             });
-            console.log("form props", this.props.form);
             this.inputAuthor.focus();
-//            this.props.form..focus();
         }
         //disable submit button at start
         this.props.form.validateFields();
@@ -157,4 +155,5 @@ CommentEdit.propTypes = {
     registerHandleSubmit: PropTypes.func,
     replyText: PropTypes.string,
 };
+
 export default  Form.create()(CommentEdit);

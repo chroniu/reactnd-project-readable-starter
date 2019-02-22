@@ -1,7 +1,3 @@
-/**
-   Component for creating New Posts and Editing existent ones
-*/
-
 import React from 'react';
 import {Form, Input, Button, Select, Col, Row} from 'antd';
 import PropTypes from 'prop-types';
@@ -57,7 +53,6 @@ class PostEdit extends React.Component{
         this.setState({submiting: true});
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log("values", values);
                 const newPost = Object.assign({}, {...this.props.post,
                                                    title: values.title,
                                                    author: values.userName,
@@ -103,26 +98,21 @@ class PostEdit extends React.Component{
                     <Input addonBefore="Author" placeholder="userName"/>
                 )}
               </Form.Item>
-              <Row>
-                <Col span={1} >
-                  <span id="SPAN_1">Category</span>
-                </Col>
-                <Col span={23} >
-                  <Form.Item
-                    validateStatus={categoryError ? 'error' : ''}
-                    help={categoryError || ''}>
-                    
-                    {getFieldDecorator('category', {
-                        rules: [{ required: true, message: 'You must select a category for the post!' }], })(
-                        <Select placeholder="Select the post category" style={{width: '100%'}}>
-                          {this.props.categories.map((category) =>
-                                                     <Select.Option value={category.path} key={category.path}>
-                                                       {category.name}
-                                                     </Select.Option>)}
-                        </Select>
-                    )}
-                  </Form.Item></Col>
-              </Row>
+              
+              <Form.Item
+                validateStatus={categoryError ? 'error' : ''}
+                help={categoryError || ''}>
+                
+                {getFieldDecorator('category', {
+                    rules: [{ required: true, message: 'You must select a category for the post!' }], })(
+                    <Select placeholder="Select the post category" style={{width: '100%'}}>
+                      {this.props.categories.map((category) =>
+                                                 <Select.Option value={category.path} key={category.path}>
+                                                   {category.name}
+                                                 </Select.Option>)}
+                    </Select>
+                )}
+              </Form.Item>
               <Form.Item
                 validateStatus={contentError ? 'error' : ''}
                 help={contentError || ''}>
@@ -147,16 +137,7 @@ class PostEdit extends React.Component{
         );
     }
 };
-/**
 
-  
-   <span className="ant-input-group-wrapper">
-   <span className="ant-input-wrapper ant-input-group">
-   <span className="ant-input-group-addon">Category</span>
-
-   <Input.TextArea autosize={{ minRows: 10, maxRows: 40 }}
-   placeholder="content"/>
-*/
 PostEdit.propTypes = {
     postID: PropTypes.string.isRequired,
     post: PropTypes.object,

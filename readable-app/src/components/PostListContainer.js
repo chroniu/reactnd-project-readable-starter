@@ -6,7 +6,6 @@ import PostList from './PostList';
 
 
 //https://medium.com/stashaway-engineering/react-redux-tips-better-way-to-handle-loading-flags-in-your-reducers-afda42a804c6
-
 const mapStateToProps = (state, props) =>{
     return {posts: Object.values(state.posts),
             loading: state.loading.posts,
@@ -54,7 +53,6 @@ class PostListContainer extends React.Component{
         }
     }
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostListContainer);
 
