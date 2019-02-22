@@ -4,7 +4,7 @@ import {Spin, Modal} from 'antd';
 import CommentList from './CommentList';
 import CommentActions from '../redux/comments/actions';
 import CommentEditContainer from './CommentEditContainer';
-import PropTypes from 'prop-types';
+
 
 const mapStateToProps = (state, props) =>{
     return {comments: Object.values(state.comments),
@@ -98,7 +98,6 @@ class CommentListContainer extends React.Component{
     }
 };
 
-CommentListContainer.propTypes = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentListContainer);
 

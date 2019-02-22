@@ -3,7 +3,7 @@
 */
 
 import React from 'react';
-import {Form, Input, Button, Select, Col} from 'antd';
+import {Form, Input, Button, Select, Col, Row} from 'antd';
 import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 import richTextOptions from '../utils/quill-toolbar';
@@ -14,8 +14,6 @@ import 'react-quill/dist/quill.snow.css';
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
-
-
 
 /**
    @description Shows a form the create a new or edit an existent post.
@@ -105,23 +103,26 @@ class PostEdit extends React.Component{
                     <Input addonBefore="Author" placeholder="userName"/>
                 )}
               </Form.Item>
-      
-              <Form.Item
-                validateStatus={categoryError ? 'error' : ''}
-                help={categoryError || ''}>
-                
-                {getFieldDecorator('category', {
-                    rules: [{ required: true, message: 'You must select a category for the post!' }], })(
-
-                    <Select placeholder="Select the post category">
-                      {this.props.categories.map((category) =>
-                                                 <Select.Option value={category.path} key={category.path}>
-                                                   {category.name}
-                                                 </Select.Option>)}
-                    </Select>
-                )}
-              </Form.Item>
-      
+              <Row>
+                <Col span={1} >
+                  <span id="SPAN_1">Category</span>
+                </Col>
+                <Col span={23} >
+                  <Form.Item
+                    validateStatus={categoryError ? 'error' : ''}
+                    help={categoryError || ''}>
+                    
+                    {getFieldDecorator('category', {
+                        rules: [{ required: true, message: 'You must select a category for the post!' }], })(
+                        <Select placeholder="Select the post category" style={{width: '100%'}}>
+                          {this.props.categories.map((category) =>
+                                                     <Select.Option value={category.path} key={category.path}>
+                                                       {category.name}
+                                                     </Select.Option>)}
+                        </Select>
+                    )}
+                  </Form.Item></Col>
+              </Row>
               <Form.Item
                 validateStatus={contentError ? 'error' : ''}
                 help={contentError || ''}>

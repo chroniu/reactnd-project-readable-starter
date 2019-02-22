@@ -137,7 +137,7 @@ class CommentEdit extends React.Component{
                     type="primary"
                     htmlType="submit"
                     disabled={hasErrors(getFieldsError())}
-                    loading={this.state.submiting}>
+                    loading={submiting}>
                     Submit
                  </Button>
                 }

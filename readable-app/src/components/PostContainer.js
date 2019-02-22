@@ -5,7 +5,7 @@ import {Spin} from 'antd';
 import CommentsListContainer from './CommentListContainer';
 import PostList from './PostList';
 import NotFound from './NotFound';
-import PropTypes from 'prop-types';
+
 
 const mapStateToProps = (state, props) => {
     const postID = props.match.params.post_id;
@@ -28,7 +28,6 @@ const mapDispatchToProps = (dispatch, props) => {
 
 /**
    @description Renders a post with full details.
-   
 */
 class PostContainer extends React.Component{
 
@@ -60,10 +59,5 @@ class PostContainer extends React.Component{
     }
 };
 
-PostContainer.propTypes = {};
-
 export default connect(mapStateToProps, mapDispatchToProps)(PostContainer);
-
-
-
 

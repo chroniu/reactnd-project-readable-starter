@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Menu from './Menu';
 import CategoryActions from '../redux/categories/actions';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 const mapStateToProps = (state, props) =>{
     if(state.loading.categories)
@@ -27,5 +27,5 @@ class MenuContainer extends React.Component{
 
 };
 
-MenuContainer.propTypes = { };
+//MenuContainer.propTypes = { };
 export default connect(mapStateToProps)(MenuContainer);

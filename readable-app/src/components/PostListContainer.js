@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import PostActions from '../redux/posts/actions';
 import {Spin} from 'antd';
 import PostList from './PostList';
-import PropTypes from 'prop-types';
 
 
 //https://medium.com/stashaway-engineering/react-redux-tips-better-way-to-handle-loading-flags-in-your-reducers-afda42a804c6
@@ -56,7 +55,6 @@ class PostListContainer extends React.Component{
     }
 };
 
-PostListContainer.propTypes = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostListContainer);
 
