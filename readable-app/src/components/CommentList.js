@@ -12,7 +12,7 @@ import renderHTML from 'react-render-html';
 const CommentActions = ({postID, commentID, voteScore, voteAction, deleteComment, handleEditing, handleReplyTo}) => [
     <IconText type="star" text={voteScore}/>,
     <IconText type="up" text="" onClick={() => voteAction(commentID, "upVote")}/>,
-    <IconText type="down" text="" onClick={() => voteAction(commentID, "downVotex")}/>,
+    <IconText type="down" text="" onClick={() => voteAction(commentID, "downVote")}/>,
     <IconText type='edit' text='' onClick={() => handleEditing(commentID)}/>,
     <IconText type='delete' text='' onClick={() => deleteComment(commentID)}/>,
     <span onClick={() => handleReplyTo(commentID)}>Reply to</span>,

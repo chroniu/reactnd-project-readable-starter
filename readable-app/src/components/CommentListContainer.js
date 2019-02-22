@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchComments: (postID) => dispatch(CommentActions.fetchComments(postID)),
         voteAction : (commentID, option) => dispatch(CommentActions.voteComment(commentID, option)),
-        deleteComment: (commentID) => dispatch(CommentActions.deleteComment(commentID)),
+        deleteComment: (commentID) => dispatch(CommentActions.deletComment(commentID)),
     };
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Input, Button, Select, Col, Row} from 'antd';
+import {Form, Input, Button, Select} from 'antd';
 import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 import richTextOptions from '../utils/quill-toolbar';
