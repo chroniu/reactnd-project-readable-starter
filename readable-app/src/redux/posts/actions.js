@@ -14,9 +14,9 @@ export const UPDATE_POST = 'UPDATE_POST';
 export const UPDATE_POST_SUCCESS = 'UPDATE_POST_SUCCESS';
 export const UPDATE_POST_FAILURE = 'UPDATE_POST_FAILURE';
 
-export const DELETE_POST = 'DELETE_POST';
-export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS';
-export const DELETE_POST_FAILURE = 'DELETE_POST_FAILURE';
+export const DELETE_POSTS = 'DELETE_POSTS';
+export const DELETE_POSTS_SUCCESS = 'DELETE_POSTS_SUCCESS';
+export const DELETE_POSTS_FAILURE = 'DELETE_POSTS_FAILURE';
 
 
 export const VOTE_POST = 'VOTE_POST';
@@ -40,7 +40,7 @@ export const fetchPost = (postID) => {
 
 export const deletePost = (postID) =>{
     return{
-        type: DELETE_POST,
+        type: DELETE_POSTS,
         postID
     };
 };
@@ -78,9 +78,9 @@ export default {
     UPDATE_POST,
     UPDATE_POST_SUCCESS,
     UPDATE_POST_FAILURE,
-    DELETE_POST,
-    DELETE_POST_SUCCESS,
-    DELETE_POST_FAILURE,
+    DELETE_POSTS,
+    DELETE_POSTS_SUCCESS,
+    DELETE_POSTS_FAILURE,
     POST_POST,
     POST_POST_SUCCESS,
     POST_POST_FAILURE,

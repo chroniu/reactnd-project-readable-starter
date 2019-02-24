@@ -35,13 +35,13 @@ export const posts = (state = {}, action) =>{
         }
     }else if(action.type.startsWith('DELETE_POST')){
         switch(action.type){
-        case Actions.DELETE_POST:
+        case Actions.DELETE_POSTS:
             return {...state,
                     [action.postID]:{...state[action.postID],
                                      deleted: true}};
-        case Actions.DELETE_POST_SUCCESS:
+        case Actions.DELETE_POSTS_SUCCESS:
             return state;
-        case Actions.DELETE_POST_FAILURE:
+        case Actions.DELETE_POSTS_FAILURE:
             return {...state,
                     [action.postID]:{...state[action.postID],
                                      deleted: false}};

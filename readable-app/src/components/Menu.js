@@ -12,7 +12,7 @@ const styles = {
 /**
    @description Shows the menu of the app.
 */
-const MenuCategories = React.memo(({categories}={categories:[]}) => {
+const MenuCategories = ({categories}={categories:[]}) => {
     return(
         <Layout.Header>
           <Menu
@@ -35,7 +35,7 @@ const MenuCategories = React.memo(({categories}={categories:[]}) => {
           </Menu>
         </Layout.Header>
     );
-});
+};
 
 MenuCategories.propTypes = {
     categories: PropTypes.array.isRequired,

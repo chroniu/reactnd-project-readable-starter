@@ -50,12 +50,12 @@ const updatePostLogic = createLogic({
 });
 
 const deletePostLogic = createLogic({
-    type: Actions.DELETE_POST,
+    type: Actions.DELETE_POSTS,
     latest: true,
     processOptions:{
         dispatchReturn: true,
-        successType: Actions.DELETE_POST_SUCCESS,
-        failType: Actions.DELETE_POST_FAILURE
+        successType: Actions.DELETE_POSTS_SUCCESS,
+        failType: Actions.DELETE_POSTS_FAILURE
     },
     process({API, getState, action}){
         return API.deletePost(action.postID);

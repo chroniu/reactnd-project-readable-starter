@@ -36,14 +36,19 @@ class PostContainer extends React.Component{
         this.props.fetchPost(postID);
     }
 
+    componentDidUpdate(){
+        if (this.props.post && this.props.post.deleted && !this.props.postLoading){
+            message.info('Post deleted');
+            this.props.history.push('/');
+        }
+    }
+
     render(){
         if(this.props.postLoading){
             return (<Spin />);
         }else if(this.props.postError){
             return (<NotFound message='Post Not Found'/>);
         }else if(this.props.post.deleted){
-            message.info('Post deleted');
-            this.props.history.push('/');
             return (<Spin />);
         }else{
             const postID = this.props.post.id;
