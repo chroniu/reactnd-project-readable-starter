@@ -12,7 +12,7 @@ const styles = {
 /**
    @description Shows the menu of the app.
 */
-const MenuCategories = ({categories}={categories:[]}) => {
+const MenuCategories = React.memo(({categories}={categories:[]}) => {
     return(
         <Layout.Header>
           <Menu
@@ -20,7 +20,6 @@ const MenuCategories = ({categories}={categories:[]}) => {
             mode="horizontal"
             defaultSelectedKeys={['all']}
             style={styles.menu}>
-
             <Menu.Item key="all">
               <Link to='/'><Icon type="home"/></Link>
             </Menu.Item>
@@ -36,7 +35,7 @@ const MenuCategories = ({categories}={categories:[]}) => {
           </Menu>
         </Layout.Header>
     );
-};
+});
 
 MenuCategories.propTypes = {
     categories: PropTypes.array.isRequired,

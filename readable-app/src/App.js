@@ -22,8 +22,7 @@ class App extends Component {
         return(
             <Router>
               <Layout className="layout">
-                <Route path='/'>
-                  <MenuContainer />
+                <Route path='/' component={MenuContainer}>
                 </Route>
                 <Content style={{padding: '0 50px'}}>
                   <div style={{ background: '#fff', padding: 24, minHeight: 600 }}>

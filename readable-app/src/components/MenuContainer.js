@@ -5,6 +5,7 @@ import CategoryActions from '../redux/categories/actions';
 
 
 const mapStateToProps = (state, props) =>{
+    
     if(state.loading.categories)
         return {categories: []};
     else
@@ -21,7 +22,7 @@ class MenuContainer extends React.Component{
     
     render(){
         return(
-            <Menu categories={this.props.categories}/>
+            <Menu categories={this.props.categories} selectedKey={this.props.selectedCategory}/>
         );
     }
 

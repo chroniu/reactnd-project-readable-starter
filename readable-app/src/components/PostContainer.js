@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PostActions from '../redux/posts/actions';
-import {Spin} from 'antd';
+import {Spin, message} from 'antd';
 import CommentsListContainer from './CommentListContainer';
 import PostList from './PostList';
 import NotFound from './NotFound';
@@ -39,8 +39,12 @@ class PostContainer extends React.Component{
     render(){
         if(this.props.postLoading){
             return (<Spin />);
-        }else if(this.props.postError || this.props.post.deleted){
+        }else if(this.props.postError){
             return (<NotFound message='Post Not Found'/>);
+        }else if(this.props.post.deleted){
+            message.info('Post deleted');
+            this.props.history.push('/');
+            return (<Spin />);
         }else{
             const postID = this.props.post.id;
 
