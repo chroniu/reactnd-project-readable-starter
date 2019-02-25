@@ -52,7 +52,7 @@ The application allows:
 
 Some screenshots of the aplication:
 
-![Aplication at root](screen-root.png "Aplication at root)
+![Aplication at root](screen-root.png "Aplication at root")
 
 
 ![New comment](screen-new-comment.png "New comment form")
