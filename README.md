@@ -70,7 +70,7 @@ This project used the following extra libraries:
  - redux-logic
  - uuid
  - react-render-html
- 
+ - react-quill
  
  
 
